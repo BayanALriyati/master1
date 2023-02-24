@@ -2,7 +2,7 @@
 include('includes/header.php');
 include './config/connect.php';
 
-session_start();
+// session_start();
 if(isset ($_SESSION ['auth'])){
 
     unset( $_SESSION ['auth'] );

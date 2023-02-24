@@ -11,7 +11,7 @@ include_once ('../middleware/adminMiddleware.php');
             <h4>Add Category</h4>
         </di >
         <div class="card-body">
-          <form action="code.php" method="POST" enctype="multipart/form-data">
+          <form action="../functions/code.php" method="POST" enctype="multipart/form-data">
            <div class="row">
            <div class="col-md-12">
             <label for="" class="label">Name</label>

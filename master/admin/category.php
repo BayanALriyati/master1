@@ -2,13 +2,14 @@
 include_once ('includes/header.php');
 include_once ('../middleware/adminMiddleware.php');
 include_once ('../config/connect.php') ;
+// include_once ('../functions/code.php') ;
+
 ?>
 
 
 
      <!-- CONTENT -->
 	<section id="content">
-
 		<!-- MAIN -->
 		<main>
 		<div class="head-title">
@@ -45,7 +46,7 @@ include_once ('../config/connect.php') ;
                   <tbody>
                     <?php
                          
-                        $category = categoryAll("category");
+                        $category = getAll("category");
 
                         if(mysqli_num_rows($category)> 0 )
                         {
@@ -71,8 +72,12 @@ include_once ('../config/connect.php') ;
                               <a href=""><i class="fa-solid fa-square-minus delete1"></i></a>
                             </td>
                             <td class="align-center text-center text-sm">
-                                <a href=""><i class="fa-solid fa-pen-to-square fa-solid"></i></a>
-                                <a href=""><i class="fa-solid fa-trash delete1"></i></a>
+                                <button><a href="editCategory.php?id=<?= $item['id']?>"><i class="fa-solid fa-pen-to-square fa-solid"></i></a></button>
+                                <form action="../functions/code.php" method="POST">
+                                 <input type="hidden" name="id" value="<?= $item['id']?>"/>
+                                 <!-- <a href="../functions/code.php?delete=<?=$item['id']; ?>"><i class="fa-solid fa-trash delete1"></i></a> -->
+                                <button type="submit" name="delateCategory_btn"><i class="fa-solid fa-trash delete1"></i></button>
+                                </form>
                             </td>
                           </tr>
                       <?php
@@ -80,32 +85,12 @@ include_once ('../config/connect.php') ;
                         }
                         else
                         {
-                          redirect("../category.php","Don't found");
+                        
+                          // redirect("../category.php","Don't found");
+                          $_SESSION ['message']="Don't found";
+                          // header('Location: ../category.php');
                         }
                     ?>
-                    <!-- <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">John Michael</h6>
-                            <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-center text-center text-sm">
-                        <a href=""><i class="fa-solid fa-square-plus"></i></a>
-                      </td>
-                      <td class="align-center text-center text-sm">
-                        <a href=""><i class="fa-solid fa-square-minus delete1"></i></a>
-                      </td>
-                      <td class="align-center text-center text-sm">
-                          <a href=""><i class="fa-solid fa-pen-to-square fa-solid"></i></a>
-	                        <a href=""><i class="fa-solid fa-trash delete1"></i></a>
-                      </td>
-                    </tr> -->
                   </tbody>
                 </table>
               </div>

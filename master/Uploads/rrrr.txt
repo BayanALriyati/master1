@@ -1,0 +1,11 @@
+Instead of manipulating the browser's DOM directly, React creates a virtual DOM in memory, where it does all the necessary manipulating, before making the changes in the browser DOM.
+بدلا من معالجة DOM للمتصفح مباشرة ، يقوم React بإنشاء DOM افتراضي في الذاكرة ، حيث يقوم بكل المعالجة اللازمة ، قبل إجراء التغييرات في DOM للمتصفح.
+Start by including three scripts, the first two let us write React code in our JavaScripts, and the third, Babel, allows us to write JSX syntax and ES6 in older browsers.
+
+Start by including three scripts, the first two let us write React code in our JavaScripts, and the third, Babel, allows us to write JSX syntax and ES6 in older browsers.
+You will learn more about JSX in the React JSX chapter.
+ابدأ بتضمين ثلاثة نصوص ، أول نصين يسمحان لنا بكتابة كود React في جافا سكريبت الخاص بنا ، والثالث ، Babel ، يسمح لنا بكتابة بناء جملة JSX و ES6 في المتصفحات القديمة.
+سوف تتعلم المزيد عن JSX في فصل React JSX.
+
+ECMAScript was created to standardize JavaScript, and ES6 is the 6th version of ECMAScript, it was published in 2015, and is also known as ECMAScript 2015
+تم إنشاء ECMAScript لتوحيد جافا سكريبت ، و ES6 هو الإصدار السادس من ECMAScript ، وقد تم نشره في عام 2015 ، ويعرف أيضا باسم ECMAScript 2015

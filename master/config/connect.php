@@ -10,7 +10,7 @@ $con = mysqli_connect(DB_SERVER , DB_USER, DB_PASSWORD, DB_DATABASE);
 
 // Check database connection
 try {
-    echo 'You Are Connected Welcome To Database';
+    // echo 'You Are Connected Welcome To Database';
 }catch (Exception $e){
     $error = $e->getMessage();
     echo $error;
