@@ -16,6 +16,15 @@ function getById($table , $id){
     return $sql_run=mysqli_query($con,$sql);
 }
 
+// read  data from table by get id
+function getCategoryProduct($table_1 , $table_2 ){
+    global $con;
+    $sql="SELECT * FROM `$table_1` INNER JOIN `$table_2` ON product.category_id = category.category_id";
+    return $sql_run=mysqli_query($con,$sql);
+}
+
+
+
 function redirect($url,$message)
 {
     $_SESSION ['message'] = $message;

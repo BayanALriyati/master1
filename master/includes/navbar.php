@@ -14,7 +14,7 @@
  
       <nav class="nav">
          <a href="./index.php">Home</a>
-         <a href="yourGift.html">Your Gift</a>
+         <a href="./yourGift.php">Your Gift</a>
          <a href="./aboutUs.html">About Us</a>        
          <a href="./contactUs.html">Contact Us</a>
       </nav>

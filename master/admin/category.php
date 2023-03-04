@@ -3,6 +3,8 @@ include_once ('includes/header.php');
 include_once ('../middleware/adminMiddleware.php');
 include_once ('../config/connect.php') ;
 // include_once ('../functions/code.php') ;
+// include_once ('../functions/myfunctions.php') ;
+
 
 ?>
 
@@ -60,7 +62,7 @@ include_once ('../config/connect.php') ;
                                   <img src="../uploads/<?= $item['image']?>" class="avatar avatar-sm me-3 border-radius-lg" alt="image">
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm"><?= $item['name']?></h6>
+                                  <h6 class="mb-0 text-sm"><?= $item['categoryName']?></h6>
                                   <p class="text-xs text-secondary mb-0"><?= $item['description']?></p>
                                 </div>
                               </div>
@@ -72,11 +74,11 @@ include_once ('../config/connect.php') ;
                               <a href=""><i class="fa-solid fa-square-minus delete1"></i></a>
                             </td>
                             <td class="align-center text-center text-sm">
-                                <button><a href="editCategory.php?id=<?= $item['id']?>"><i class="fa-solid fa-pen-to-square fa-solid"></i></a></button>
+                                <button><a href="editCategory.php?id=<?= $item['category_id']?>"><i class="fa-solid fa-pen-to-square fa-solid"></i></a></button>
                                 <form action="../functions/code.php" method="POST">
-                                 <input type="hidden" name="id" value="<?= $item['id']?>"/>
-                                 <!-- <a href="../functions/code.php?delete=<?=$item['id']; ?>"><i class="fa-solid fa-trash delete1"></i></a> -->
-                                <button type="submit" name="delateCategory_btn"><i class="fa-solid fa-trash delete1"></i></button>
+                                 <input type="hidden" name="id" value="<?= $item['category_id']?>"/>
+                                 <!-- <a href="../functions/code.php?delete=<?=$item['category_id']; ?>"><i class="fa-solid fa-trash delete1"></i></a> -->
+                                 <button type="submit" name="delateCategory_btn"><i class="fa-solid fa-trash delete1"></i></button>
                                 </form>
                             </td>
                           </tr>

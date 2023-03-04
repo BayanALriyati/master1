@@ -13,11 +13,19 @@ include_once ('../middleware/adminMiddleware.php');
         <div class="card-body">
           <form action="../functions/code.php" method="POST" enctype="multipart/form-data">
            <div class="row">
-           <div class="col-md-6">
+           <div class="col-md-12">
             <label for="" class="label">Name</label>
             <input type="text" name="name" placeholder="Enter Product Name" class="form-control" required>
            </div>
            <div class="col-md-6">
+            <label for="" class="label">Slug</label>
+            <input type="text" name="slug" placeholder="Enter Category Slug" class="form-control" required>
+           </div>
+           <div class="col-md-6">
+            <label for="" class="label">Status</label>
+            <input type="checkbox" name="status">
+           </div>
+           <div class="col-md-4">
             <label for="" class="label">Select Category</label>
              <select name="category" class="form-select">
               <option selected>Select Category</option>
@@ -27,7 +35,7 @@ include_once ('../middleware/adminMiddleware.php');
                     {
                       foreach ($category as $item) {
                         ?>
-                        <option value="<?= $item["id"];?>"><?= $item["name"];?></option>
+                        <option value="<?= $item["category_id"];?>"><?= $item["categoryName"];?></option>
                         <?php
                       }
                     }
@@ -37,11 +45,11 @@ include_once ('../middleware/adminMiddleware.php');
                 ?>
             </select>
            </div>
-           <div class="col-md-6">
+           <div class="col-md-4">
             <label for="" class="label">Quantity</label>
             <input type="text" name="quantity" placeholder="Enter Quantity" class="form-control" required>
            </div>
-           <div class="col-md-6">
+           <div class="col-md-4">
             <label for="" class="label">Price</label>
             <input type="text" name="price" placeholder="Enter Price" class="form-control" required>
            </div>
@@ -55,15 +63,15 @@ include_once ('../middleware/adminMiddleware.php');
            </div>
            <div class="col-md-4"> 
             <label for="" class="label">Thumbnail 1</label>
-            <input type="file" name="Thumbnail_1" class="form-control" required>
+            <input type="file" name="thumbnail_1" class="form-control" required>
            </div>
            <div class="col-md-4"> 
             <label for="" class="label">Thumbnail 2</label>
-            <input type="file" name="Thumbnail_2" class="form-control" required>
+            <input type="file" name="thumbnail_2" class="form-control" required>
            </div>
            <div class="col-md-4"> 
             <label for="" class="label">Thumbnail 3</label>
-            <input type="file" name="Thumbnail_3" class="form-control" required>
+            <input type="file" name="thumbnail_3" class="form-control" required>
            </div>
            <div class="col-md-12"> 
             <button type="submit" class="btn btn-primary mt-5" name="addProduct_btn">Save</button>

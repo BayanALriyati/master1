@@ -1,44 +1,51 @@
 <?php
 
  session_start();
- include ('../config/connect.php');
+ include_once ('../config/connect.php');
  include_once ('../functions/myfunctions.php') ;
 
 
 if(isset($_POST['addCategory_btn'])){
    
-    $name = $_POST['name'];
+    $categoryName = $_POST['name'];
+    $slug = $_POST['slug'];
+    $status = isset($_POST['status']) ? '1':'0'; 
+    $popular = isset($_POST['popular']) ? '1':'0';
     $description = $_POST['description'];
     $image = $_FILES['image']['name'];
     $image_size = $_FILES['image']['size'];
     $image_tmp_name = $_FILES['image']['tmp_name'];
     $image_folder = '../Uploads/'.$image;
 
-    //  The class name already exists ?
-    $select_category =("SELECT * FROM `category` WHERE name='$name'");
+    //   Do the category name already exists ?
+    $select_category =("SELECT * FROM `category` WHERE categoryName='$categoryName'");
     $select_category_run=mysqli_query ($con , $select_category);
  
     if(mysqli_num_rows($select_category_run)> 0)
-     {
-            $_SESSION ['message']="category name already exist!";
-            header('Location: ../admin/addCategory.php');
+     {      
+          redirect("../admin/addCategory.php" , "Category name already exist!");
+         //  $_SESSION ['message']="category name already exist!";
+         //  header('Location: ../admin/addCategory.php');
      }
      else
       {
 
     //Insert Category 
-       $insert_query = "INSERT INTO category (name , description , image) VALUE ('$name','$description','$image')";
+       $insert_query = "INSERT INTO category (categoryName , slug , status, popular, description , image) VALUE 
+       ('$categoryName','$slug','$status','$popular','$description','$image')";
        $insert_query_run=mysqli_query($con,$insert_query);
    
     if($insert_query_run){
         move_uploaded_file($image_tmp_name , $image_folder);
-        $_SESSION ['message'] = "Category Added Successfully";
-        header('Location: ../admin/category.php');
+        redirect("../admin/Category.php" , "Category Added Successfully");
+        //   $_SESSION ['message'] = "Category Added Successfully";
+        //   header('Location: ../admin/category.php');
      }
      else
      {
-         $_SESSION ['message'] = "Something went wrong";
-         header('Location: ../admin/addCategory.php');
+        redirect("../admin/addCategory.php" , "Something went wrong"); 
+        //   $_SESSION ['message'] = "Something went wrong";
+        //   header('Location: ../admin/addCategory.php');
      }
   }
 
@@ -46,7 +53,10 @@ if(isset($_POST['addCategory_btn'])){
 
 else if(isset($_POST['editCategory_btn'])){
     $id = $_POST['id'];
-    $name = $_POST['name'];
+    $categoryName = $_POST['name'];
+    $slug = $_POST['slug'];
+    $status = isset($_POST['status']) ? '1':'0'; 
+    $popular = isset($_POST['popular']) ? '1':'0';
     $description = $_POST['description'];
     $new_image = $_FILES['image']['name'];
     $image_size = $_FILES['image']['size'];
@@ -63,7 +73,8 @@ else if(isset($_POST['editCategory_btn'])){
     }
  
  
-    $update_query = "UPDATE `category` SET name='$name' , description='$name' , image='$update_image' WHERE id='$id'" ;
+    $update_query = "UPDATE `category` SET categoryName='$categoryName' ,slug='$slug' , status='$status' , 
+    popular='$popular , description='$description' , image='$update_image' WHERE category_id='$id'" ;
     $update_query_run = mysqli_query($con , $update_query);
 
      if ($update_query_run)
@@ -81,16 +92,14 @@ else if(isset($_POST['editCategory_btn'])){
 } 
 
 else if(isset($_POST['delateCategory_btn'])){
-    // $id = mysqli_real_escape_string($con, $_POST['id']);
-    //  $id = mysqli_real_escape_string($con , $_post['id']);
+    
      $id =  $_POST['id'];
-     $category_query = "SELECT * FROM category WHERE id= '$id' " ;
+     $category_query = "SELECT * FROM category WHERE categoryName = '$id' " ;
      $category_query_run = mysqli_query($con , $category_query) ;
      $category_data = mysqli_fetch_array($category_query_run) ;
      $image = $category_data['image'] ;
-   //   echo "$image" ;
-
-     $delate_query = " DELETE FROM `category` WHERE id = '$id' ";
+  
+     $delate_query = " DELETE FROM `category` WHERE category_id = '$id' ";
      $delate_query_run = mysqli_query($con , $delate_query);
 
      if($delate_query_run)
@@ -109,7 +118,9 @@ else if(isset($_POST['delateCategory_btn'])){
 else if(isset($_POST['addProduct_btn'])){
 
    $category_name = $_POST['category'];
-   $name = $_POST['name'];
+   $productName = $_POST['name'];
+   $slug = $_POST['slug'];
+   $status = isset($_POST['status']) ? '1':'0'; 
    $description = $_POST['description'];
    $price = $_POST['price'];
    $quantity = $_POST['quantity'];
@@ -134,30 +145,167 @@ else if(isset($_POST['addProduct_btn'])){
    $thumbnail_3_size = $_FILES['thumbnail_3']['size'];
    $thumbnail_3_tmp_name = $_FILES['thumbnail_3']['tmp_name'];
    $thumbnail_3_folder = '../Uploads/'.$thumbnail_3;
+   
+   
+   //   Do the product name already exists ?
+   $select_product =("SELECT * FROM `product` WHERE productName='$productName'");
+   $select_product_run=mysqli_query ($con , $select_product);
 
-   if($name != "" && $category_name != "" && $description != "" && $price != "" && $quantity && $price != "" && 
-     $thumbnail_1 != "")
-   {
-     //Insert Products 
-     $insert_query = "INSERT INTO product (category_id , name , description , price , quantity , imageMain , 
-     thumbnail_1 , thumbnail_2 , thumbnail_3) VALUE ('$category_id' , '$name' , '$description' , '$price' , 
-     '$quantity' , '$imageMain' , '$thumbnail_1' , '$thumbnail_2' ,'$thumbnail_3')";
-     $insert_query_run=mysqli_query($con,$insert_query);
+   if(mysqli_num_rows($select_product_run)> 0)
+     {      
+          redirect("../admin/addProduct.php" , "Product name already exist!");
+         //  $_SESSION ['message']="category name already exist!";
+         //  header('Location: ../admin/addCategory.php');
+     }
+     else
+     {
+
+        //Insert Category 
+
+        if($productName != "" && $category_name != "" && $description != "" && $price != "" 
+          && $quantity && $price != "" && $slug  && $status != "" && 
+          $imageMain != "" && $thumbnail_1 != "" && $thumbnail_2 != "" && $thumbnail_3 != "")
+   
+        {
+           //Insert Products 
+           $insert_query = "INSERT INTO product (category_id , productName , slug , status , description , price , quantity , imageMain , 
+           thumbnail_1 , thumbnail_2 , thumbnail_3) VALUE ('$category_name' , '$productName' , '$slug' , '$status'  , '$description' , '$ price' , 
+           '$quantity' , '$imageMain' , '$thumbnail_1' , '$thumbnail_2' ,'$thumbnail_3')";
+           $insert_query_run=mysqli_query($con,$insert_query);
  
-     if($insert_query_run){
-         move_uploaded_file($imageMain_tmp_name , $imageMain_folder);
-         move_uploaded_file($thumbnail_1_tmp_name , $thumbnail_1_folder);
-         move_uploaded_file($thumbnail_2_tmp_name , $thumbnail_2_folder);
-         move_uploaded_file($thumbnail_3_tmp_name , $thumbnail_3_folder);
+           if($insert_query_run){
+               move_uploaded_file($imageMain_tmp_name , $imageMain_folder);
+               move_uploaded_file($thumbnail_1_tmp_name , $thumbnail_1_folder);
+               move_uploaded_file($thumbnail_2_tmp_name , $thumbnail_2_folder);
+               move_uploaded_file($thumbnail_3_tmp_name , $thumbnail_3_folder);
 
-         $_SESSION ['message'] = "Product Added Successfully";
-         header('Location: ../admin/Product.php');
-      }
-      else
+               redirect("../admin/Product.php" , "Product Added Successfully");
+               // $_SESSION ['message'] = "Product Added Successfully";
+               // header('Location: ../admin/Product.php');
+            }
+            else
+            {
+              redirect("../admin/addProduct.php" , "Something went wrong");
+              // $_SESSION ['message'] = "Something went wrong";
+              // header('Location: ../admin/addProduct.php');
+           }
+        }
+        else
+        {
+               redirect("../admin/addProduct.php" , "ddddddd");
+        }
+   }
+}
+
+else if(isset($_POST['editCategory_btn'])){
+   $id = $_POST['id'];
+   $category_id = $_POST['category_id'];
+   $productName = $_POST['name'];
+   $description = $_POST['description'];
+   $price = $_POST['price'];
+   $quantity = $_POST['quantity'];
+
+   //       Image Main 
+   $newImageMain = $_FILES['imageMain']['name'];
+   $imageMain_size = $_FILES['imageMain']['size'];
+   $imageMain_tmp_name = $_FILES['imageMain']['tmp_name'];
+   $imageMain_folder = '../Uploads/'.$imageMain;
+   $oldImageMain = $_POST['oldImageMain'];  
+
+   //      Image Thumbnail 1
+   $newThumbnail_1 = $_FILES['thumbnail_1']['name'];
+   $thumbnail_1_size = $_FILES['thumbnail_1']['size'];
+   $thumbnail_1_tmp_name = $_FILES['thumbnail_1']['tmp_name'];
+   $thumbnail_1_folder = '../Uploads/'.$newThumbnail_1;
+   $oldThumbnail_1 = $_POST['oldThumbnail_1'];  
+   //      Image Thumbnail 2
+   $newThumbnail_2 = $_FILES['thumbnail_2']['name'];
+   $thumbnail_2_size = $_FILES['thumbnail_2']['size'];
+   $thumbnail_2_tmp_name = $_FILES['thumbnail_2']['tmp_name'];
+   $thumbnail_2_folder = '../Uploads/'.$newThumbnail_2;
+   $oldThumbnail_2 = $_POST['oldThumbnail_2'];  
+   //      Image Thumbnail 3
+   $newThumbnail_3 = $_FILES['thumbnail_3']['name'];
+   $thumbnail_3_size = $_FILES['thumbnail_3']['size'];
+   $thumbnail_3_tmp_name = $_FILES['thumbnail_3']['tmp_name'];
+   $thumbnail_3_folder = '../Uploads/'.$newThumbnail_3;  
+   $oldThumbnail_3 = $_POST['oldThumbnail_3'];  
+
+   if($newImageMain != "" && $newThumbnail_1 != "" && $newThumbnail_2 != "" && $newThumbnail_3 != ""){
+      $updateImageMain = $newImageMain ;
+      $updateThumbnail_1 = $newThumbnail_1 ;
+      $updateThumbnail_2 = $newThumbnail_2 ;
+      $updateThumbnail_3 = $newThumbnail_3 ;
+   }
+   else
+   {
+      $updateImageMain = $oldImageMain ;
+      $updateThumbnail_1 = $oldThumbnail_1 ;
+      $updateThumbnail_2 = $oldThumbnail_2 ;
+      $updateThumbnail_3 = $oldThumbnail_3 ;   }
+
+
+   $update_query = "UPDATE `product` SET category_id='$category_id' 
+   productName='$productName' , description='$description' , 
+   price='$price' quantity='$quantity'
+   imageMain='$updateImageMain'
+   thumbnail_1='$updateThumbnail_1' 
+   thumbnail_2='$updateThumbnail_2' 
+   thumbnail_3='$updateThumbnail_3' WHERE 
+   category_id='$id'" ;
+   $update_query_run = mysqli_query($con , $update_query);
+
+    if ($update_query_run)
+    {
+       if($newImageMain = $_FILES['imageMain']['name']!= "" &&  
+       $newThumbnail_1 = $_FILES['thumbnail_1']['name']!= "" &&
+       $newThumbnail_2 = $_FILES['thumbnail_2']['name']!= "" &&
+       $newThumbnail_3 = $_FILES['thumbnail_3']['name']!= ""
+    )
       {
-          $_SESSION ['message'] = "Something went wrong";
-          header('Location: ../admin/addProduct.php');
+        move_uploaded_file($imageMain_tmp_name , $imageMain_folder);
+        move_uploaded_file($thumbnail_1_tmp_name , $thumbnail_1_folder);
+        move_uploaded_file($thumbnail_2_tmp_name , $thumbnail_2_folder);
+        move_uploaded_file($thumbnail_3_tmp_name , $thumbnail_3_folder);
+        if(file_exists("../uploads/".$oldImageMain) && 
+           file_exists("../uploads/".$oldThumbnail_1)&& 
+           file_exists("../uploads/".$oldThumbnail_2)&& 
+           file_exists("../uploads/".$oldThumbnail_3))
+        {
+           unlink("../uploads/".$oldImageMain);
+           unlink("../uploads/".$oldThumbnail_1);
+           unlink("../uploads/".$oldThumbnail_2);
+           unlink("../uploads/".$oldThumbnail_3);
+        }
       }
+       redirect("../admin/product.php" , "Product Update Successfully");
+    }
+} 
+
+else if(isset($_POST['delateProduct_btn'])){
+    
+   $id =  $_POST['id'];
+   $product_query = "SELECT * FROM product WHERE productName = '$id' " ;
+   $product_query_run = mysqli_query($con , $product_query) ;
+   $product_data = mysqli_fetch_array($product_query_run) ;
+   $image = $product_data['imageMain'] ;
+
+   $delate_query = " DELETE FROM `product` WHERE product_id = '$id' ";
+   $delate_query_run = mysqli_query($con , $delate_query);
+
+   if($delate_query_run)
+   {
+      if(file_exists("../uploads/".$image))
+      {
+         unlink("../uploads/".$image);
+      }
+      redirect("../admin/product.php" , "Product Deleted Successfully");
+      // echo 200 ;
+   }
+   else{
+      redirect("../admin/product.php" , "Something went wrong");
+      // echo 500 ;
+
    }
 }
 
