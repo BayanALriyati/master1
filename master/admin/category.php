@@ -40,9 +40,10 @@ include_once ('../config/connect.php') ;
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Add sale</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Remove Sale</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                      <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Remove Sale</th> -->
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -58,6 +59,7 @@ include_once ('../config/connect.php') ;
                             <tr></tr>
                             <td>
                               <div class="d-flex px-2 py-1">
+                                <input type="hidden" >
                                 <div>
                                   <img src="../uploads/<?= $item['image']?>" class="avatar avatar-sm me-3 border-radius-lg" alt="image">
                                 </div>
@@ -68,17 +70,18 @@ include_once ('../config/connect.php') ;
                               </div>
                             </td>
                             <td class="align-center text-center text-sm">
-                              <a href=""><i class="fa-solid fa-square-plus"></i></a>
+                                <?= $item['status'] ? "Visible":"Hidden" ?>                          
                             </td>
-                            <td class="align-center text-center text-sm">
+                            <!-- <td class="align-center text-center text-sm">
                               <a href=""><i class="fa-solid fa-square-minus delete1"></i></a>
-                            </td>
+                            </td> -->
                             <td class="align-center text-center text-sm">
                                 <button><a href="editCategory.php?id=<?= $item['category_id']?>"><i class="fa-solid fa-pen-to-square fa-solid"></i></a></button>
+                            </td>
+                            <td class="align-center text-center text-sm">
                                 <form action="../functions/code.php" method="POST">
-                                 <input type="hidden" name="id" value="<?= $item['category_id']?>"/>
-                                 <!-- <a href="../functions/code.php?delete=<?=$item['category_id']; ?>"><i class="fa-solid fa-trash delete1"></i></a> -->
-                                 <button type="submit" name="delateCategory_btn"><i class="fa-solid fa-trash delete1"></i></button>
+                                  <input type="hidden" name="id" value="<?= $item['category_id']?>"/>
+                                  <button type="submit" name="delateCategory_btn"><i class="fa-solid fa-trash delete1"></i></button>
                                 </form>
                             </td>
                           </tr>

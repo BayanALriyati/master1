@@ -10,10 +10,13 @@ include_once ('../functions/myfunctions.php') ;
   <div class="row">
     <div class="col-md-12 shadow-lg p-3 mb-3 bg-primary rounded ">
      <?php 
-      if(isset($_GET['category_id']))
+      if(isset($_GET['id']))
       {
-        $id = $_GET['category_id'];
-        $category = getById("category" , $id);
+        $id = $_GET['id'];
+
+        // $category = getById("category" , $id);
+        $sql="SELECT *FROM category WHERE category_id='$id'";
+        $category=mysqli_query($con,$sql);
         
         if(mysqli_num_rows($category) > 0)
         {
@@ -37,11 +40,11 @@ include_once ('../functions/myfunctions.php') ;
                  </div>
                  <div class="col-md-6">
                   <label for="" class="label">Status</label>
-                  <input type="checkbox" name="status">
+                  <input type="checkbox" name="status" <?= $data['status'] ? "checked":"" ?>>
                  </div>
                  <div class="col-md-6">
                   <label for="" class="label">Popular</label>
-                  <input type="checkbox" name="popular">
+                  <input type="checkbox" name="popular" <?= $data['popular'] ? "checked":""?>>
                  </div>
                  <div class="col-md-12">
                   <label class="label">Description</label>
@@ -51,7 +54,7 @@ include_once ('../functions/myfunctions.php') ;
                   <label for="" class="label">Upload Image</label>
                   <input type="file" name="image" class="form-control" required>
                   <label for="" class="label">Current Image</label>
-                  <input type="hidden" name="old-image" value="<?= $data['image']?>" class="form-control" required>
+                  <input type="hidden" name="old_image" class="form-control" required>
                   <img src="../Uploads/<?= $data['image']?>" height="90" width="100" />
                  </div>
                  <div class="col-md-12"> 
@@ -71,10 +74,6 @@ include_once ('../functions/myfunctions.php') ;
             // header('Location: category.php');
       }
     }
-    // else
-    // {
-    //    echo "Id missing from url";
-    // }
            ?>
     </div>
   </div>

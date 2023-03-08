@@ -1530,6 +1530,8 @@ section i{
       align-items: center;
       justify-items: end;
   }
+  
+ 
 
 }
 
@@ -1546,7 +1548,8 @@ section i{
 
   body{
       padding-bottom: 6rem;
-  }
+   }
+ 
 
   .header .header-2{
       display:none;
@@ -1560,7 +1563,7 @@ section i{
       box-shadow: var(--box-shadow);
       position: relative;
   }
-
+ 
   .header .header-1 .search-form{
       position:absolute;
       top:-115%; right:2rem;
@@ -1586,6 +1589,7 @@ section i{
    align-items: center;
    justify-items: end;
 }
+
 
 
 }
@@ -1629,6 +1633,7 @@ section i{
       align-items: center;
       justify-items: end;
   }
+  
 }
 
 

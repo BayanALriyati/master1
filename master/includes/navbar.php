@@ -47,7 +47,7 @@
            else
            {
             ?>
-            <div class="icon">
+            <div class="icon-1">
             <a href="./login.php" class="fas fa-user"></a>
            </div>
             <?php 

@@ -95,6 +95,7 @@
 .form-select {
 	border: 0.2rem solid #621147 !important;
     padding: 8px 10px !important;
+	background-color: #621147;
 }
  
 .label{
@@ -106,4 +107,59 @@
     width: 70px !important;
     height: 70px !important;
     font-size: .875rem;
+}
+
+.btn{
+	/* border: 0.2rem solid #621147 !important; */
+    padding: 8px 10px !important;
+	background-color: #E3306F !important;
+	color: var(--white) !important;
+	height: 2.6rem !important;
+	/* border-radius: 4.375rem !important; */
+
+}
+.inputOffer{
+	border: 0.2rem solid  #621147 !important;
+    padding: .5rem .5rem!important;
+    width: 6rem !important;
+    height: 2.6rem !important;
+	margin-left: 1rem !important;
+	/* margin-right: 6rem !important; */
+
+}
+
+.selectOffer{
+	border: 0.2rem solid  #621147 !important;
+    padding: .5rem .5rem!important;
+    width: 10rem !important;
+    height: 2.6rem !important;
+	margin-left: 1rem !important;
+	
+}
+
+/* .inputOfferPro{
+	border: 0.2rem solid  #621147 !important;
+    padding: .5rem .5rem!important;
+    width: 15rem !important;
+    height: 2.6rem !important;
+	margin-left: 0rem !important;
+	margin-right: 15rem !important;
+
+} */
+
+.offer-product{
+	/* border: 0.2rem solid  #621147 !important; */
+    padding: .5rem .5rem!important;
+    width: 10rem !important;
+    height: 2.6rem !important;
+	margin-right: 20rem !important;
+	
+}
+
+#content main .head-title .left .offer {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+	margin-left:2rem ;
+    color: var(--dark-color);
 }
