@@ -10,6 +10,8 @@ if (isset($_POST['register'])){
 
     // $email=  mysqli_real_escape_string($con,$_POST['email']);
     $email=  $_POST['email'];
+    
+
     // $password=  mysqli_real_escape_string($con,$_POST['password']);
     $password=  $_POST['password'];
 
@@ -73,12 +75,16 @@ if(mysqli_num_rows($login_query_run) > 0)
         $userId = $userLogin['User_id'];
         $userName = $userLogin['name'];
         $userEmail = $userLogin['email'];
+        $image = $userLogin['image'];
+
         $Role = $userLogin['role'];
 
         $_SESSION ['auth_user'] = [
               'id'=> $userId ,
               'name'=> $userName ,
-              'email'=> $userEmail 
+              'email'=> $userEmail,
+              'image'=> $image 
+
         ];
 
         $_SESSION ['role_as'] = $Role ;

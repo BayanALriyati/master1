@@ -19,6 +19,8 @@
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="assets/css/style.css">
+   <link rel="stylesheet" href="assets/css/header.css">
+
    <!-- Alertify Js -->
    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>

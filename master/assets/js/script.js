@@ -74,3 +74,16 @@ var ProductImg = document.getElementById('ProductImg');
     };
 
 
+    // navbar = document.querySelector('.header .navbar');
+
+    // document.querySelector('#menu-btn').onclick = () =>{
+    //    navbar.classList.toggle('active');
+    //    profile.classList.remove('active');
+    // }
+    
+    // profile = document.querySelector('.header .profile');
+    
+    // document.querySelector('#user-btn').onclick = () =>{
+    //    profile.classList.toggle('active');
+    //    navbar.classList.remove('active');
+    // }
