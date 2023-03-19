@@ -51,10 +51,10 @@ include_once('functions/userFunctions.php');
                 
                 <div class="col-lg-9 col-md-9">
                     <div class="row">
-                            <div class="col-lg-9 col-md-9">
+                            <div class="col-lg-12 col-md-12">
                                 <div class="products">
                             
-                                <div class="box-container ">
+                                <div class="box-container">
                                 <?php 
 
 if (isset($_GET['category'])){
@@ -75,7 +75,30 @@ if (isset($_GET['category'])){
                         foreach($product as $item)
                     {
                 ?>
-                                    <div class="box card">
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="products">
+                            
+                            <div class="box-container">
+                                <div class="box flower">
+                                    <span class="discount">-<?= $item['percent_discount']?>%</span>
+                                    <div class="image">
+                                        <img src="./uploads/<?= $item['imageMain']?>"  alt="">
+                                        <div class="icons">
+                                            <a href="#" class="fas fa-heart"></a>
+                                            <a href="#" class="cart-btn">add to cart</a>
+                                            <a href="product_view.php?product=<?= $item['slug']?>" class="fas fa-share"></a>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <h3><?= $item['productName']?></h3>
+                                        <div class="price"> <?= $item['price_discount']?> <span><?= $item['price']?></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                                    <!-- <div class="box card">
                                         <div class="image">
                                             <img src="./uploads/<?= $item['imageMain']?>" alt="">
                                             <div class="icons">
@@ -88,7 +111,7 @@ if (isset($_GET['category'])){
                                             <h3><?= $item['productName']?></h3>
                                             <div class="price"> <?= $item['price']?></div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <?php
                             }
                         }
@@ -116,9 +139,9 @@ if (isset($_GET['category'])){
 
                         <div class="col-lg-9 col-md-9">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6">
+                                <div class="col-lg-12 col-md-12">
                                     <div class="products">
-                                        <div class="box-container ">
+                                        <div class="box-container">
                         <?php
                             }
                         }
@@ -131,7 +154,30 @@ if (isset($_GET['category'])){
                             foreach($product as $item)
                             {
                         ?>
-                                            <div class="box card">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="products">
+                            
+                            <div class="box-container">
+                         
+                                <div class="box flower">
+                                    <span class="discount">-<?= $item['percent_discount']?>%</span>
+                                    <div class="image">
+                                        <img src="./uploads/<?= $item['imageMain']?>"  alt="">
+                                        <div class="icons">
+                                            <a href="#" class="fas fa-heart"></a>
+                                            <a href="#" class="cart-btn">add to cart</a>
+                                            <a href="product_view.php?product=<?= $item['slug']?>" class="fas fa-share"></a>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <h3><?= $item['productName']?></h3>
+                                        <div class="price"> <?= $item['price']?> <span><?= $item['price_discount']?></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                            <!-- <div class="box card">
                                                     <div class="image">
                                                     <img src="./uploads/<?= $item['imageMain']?>" alt="">
                                                         <div class="icons">
@@ -144,7 +190,7 @@ if (isset($_GET['category'])){
                                                 <h3><?= $item['productName']?></h3>
                                                 <div class="price"> <?= $item['price']?></div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                     <?php
                     }
                 }
@@ -156,7 +202,7 @@ if (isset($_GET['category'])){
                         </div>
                     </div>
                 </div>
-                        
+                </div>       
 
 
             </div>

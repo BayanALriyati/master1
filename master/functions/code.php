@@ -168,7 +168,7 @@ else if(isset($_POST['addProduct_btn'])){
         {
            //Insert Products 
            $insert_query = "INSERT INTO product (category_id , productName , slug , status , description , price , quantity , imageMain , 
-           thumbnail_1 , thumbnail_2 , thumbnail_3) VALUE ('$category_name' , '$productName' , '$slug' , '$status'  , '$description' , '$ price' , 
+           thumbnail_1 , thumbnail_2 , thumbnail_3) VALUE ('$category_name' , '$productName' , '$slug' , '$status'  , '$description' , '$price' , 
            '$quantity' , '$imageMain' , '$thumbnail_1' , '$thumbnail_2' ,'$thumbnail_3')";
            $insert_query_run=mysqli_query($con,$insert_query);
  
@@ -212,7 +212,6 @@ else if(isset($_POST['editProduct_btn'])){
    $imageMain_tmp_name = $_FILES['imageMain']['tmp_name'];
    $imageMain_folder = '../Uploads/'.$newImageMain;
    $oldImageMain = $_POST['oldImageMain'];  
-
    //      Image Thumbnail 1
    $newThumbnail_1 = $_FILES['thumbnail_1']['name'];
    $thumbnail_1_size = $_FILES['thumbnail_1']['size'];
@@ -243,10 +242,11 @@ else if(isset($_POST['editProduct_btn'])){
       $updateImageMain = $oldImageMain ;
       $updateThumbnail_1 = $oldThumbnail_1 ;
       $updateThumbnail_2 = $oldThumbnail_2 ;
-      $updateThumbnail_3 = $oldThumbnail_3 ;   }
+      $updateThumbnail_3 = $oldThumbnail_3 ;  
+   }
 
 
-   $update_query = "UPDATE `product` SET category_id='$category_name' 
+   $update_query = "UPDATE `product` SET category_id='$category_name' ,
    productName='$productName' , description='$description' , 
    price='$price' , quantity='$quantity' ,
    slug='$slug' , status='$status' ,
@@ -254,7 +254,7 @@ else if(isset($_POST['editProduct_btn'])){
    thumbnail_1='$updateThumbnail_1' ,
    thumbnail_2='$updateThumbnail_2' ,
    thumbnail_3='$updateThumbnail_3' WHERE 
-   category_id='$id'" ;
+   product_id='$id'" ;
    $update_query_run = mysqli_query($con , $update_query);
 
     if ($update_query_run)
@@ -315,20 +315,22 @@ else if( isset($_POST['add-discountCategory'])){
 
    $category_id = $_POST['category'];
    $percent_discount = $_POST['add-on-category'] ;
-   $select_all_product ="SELECT * FROM `product` WHERE is_discount='0' AND category_id='$category_id'";
+   $select_all_product ="SELECT * FROM `product` INNER JOIN `category` ON product.category_id = category.category_id";
    $product_query_run = mysqli_query($con , $select_all_product) ;
    if(mysqli_num_rows($product_query_run)> 0){
-       while($fetch_product = mysqli_fetch_array($product_query_run)){
-           $id = $fetch_product['category_id'];
-           $new_price = $fetch_product['price'] * (1-((int)$percent_discount/100));
+      while($fetch_product = mysqli_fetch_array($product_query_run)){
+         $category_id = $fetch_product['category_id'];
+
+           $price = $fetch_product['price'];
+           $new_price = ($price) * (1-((int)$percent_discount/100));
          //   $new_price = $fetch_product['price'] - (($fetch_product['price'])*((int)$percent_discount/100));
 
            $insert_new_price = "UPDATE `product` SET  price_discount='$new_price' , is_discount = '1' , percent_discount='$percent_discount'
-                              WHERE category_id = '$id'";
+                              Where category_id= '$category_id'";
            $product_query_run = mysqli_query($con , $insert_new_price) ;
            redirect("../admin/offers.php" , "Discount Added Successfully");
        }
-       
+   
    }
    else{
       redirect("../admin/offers.php" , "Delete previous offer");
@@ -358,4 +360,90 @@ else if( isset($_POST['remove-discountCategory'])){
    }
 }
 
+else if( isset($_POST['add-discountProduct'])){
+
+   $percent_discount = $_POST['add-on-product'] ;
+   $select_all_product ="SELECT * FROM `product` WHERE is_discount='0'";
+   $product_query_run = mysqli_query($con , $select_all_product) ;
+   if(mysqli_num_rows($product_query_run)> 0){
+         while($fetch_product = mysqli_fetch_array($product_query_run)){
+         $product_id = $fetch_product['product_id'];
+         $price = $fetch_product['price'] ;
+         $new_price = $price * (1-((int)$percent_discount/100));
+         //   $new_price = $fetch_product['price'] - (($fetch_product['price'])*((int)$percent_discount/100));
+
+           $insert_new_price = "UPDATE `product` SET  price_discount='$new_price' , is_discount = '1' , percent_discount='$percent_discount'";
+           $product_query_run = mysqli_query($con , $insert_new_price) ;
+           redirect("../admin/offers.php" , "Discount Added Successfully");
+       }
+       
+   }
+   else{
+      redirect("../admin/offers.php" , "Delete previous offer");
+
+    }
+}
+
+else if( isset($_POST['remove-discountProduct'])){
+
+   $select_all_product ="SELECT * FROM `product` WHERE is_discount='1'";
+   $product_query_run = mysqli_query($con , $select_all_product) ;
+   if(mysqli_num_rows($product_query_run)> 0){
+         while($fetch_product = mysqli_fetch_array($product_query_run)){
+            $insert_new_price = "UPDATE `product` SET is_discount = '0' , price_discount = '0' , percent_discount = '0' ";
+            $product_query_run = mysqli_query($con , $insert_new_price) ;
+            redirect("../admin/offers.php" , "Discount Removed Successfully");
+         }
+      
+   }
+   else{
+      redirect("../admin/offers.php" , "No Discount");
+
+   }
+}
+
+else if( isset($_POST['add-discountProduct'])){
+
+   $product_id = $_POST['product'];
+   $percent_discount = $_POST['add-on-product'] ;
+   $select_all_product ="SELECT * FROM `product` WHERE is_discount='0' AND product_id='$product_id'";
+   $product_query_run = mysqli_query($con , $select_all_product) ;
+   if(mysqli_num_rows($product_query_run)> 0){
+         while($fetch_product = mysqli_fetch_array($product_query_run)){
+
+            $id = $fetch_product['product_id'];
+           $new_price = $fetch_product['price'] * (1-((int)$percent_discount/100));
+         //   $new_price = $fetch_product['price'] - (($fetch_product['price'])*((int)$percent_discount/100));
+
+            $insert_new_price = "UPDATE `product` SET  price_discount='$new_price' , is_discount = '1' , percent_discount='$percent_discount' WHERE product_id = '$id'";
+            $product_query_run = mysqli_query($con , $insert_new_price) ;
+            redirect("../admin/offers.php" , "Discount Added Successfully");
+      }
+      
+   }
+   else{
+      redirect("../admin/offers.php" , "Delete previous offer");
+
+    }
+}
+
+else if( isset($_POST['remove-discountProduct'])){
+
+   $product_id = $_POST['product'];
+   $select_all_product ="SELECT * FROM `product` WHERE is_discount='1' AND product_id='$product_id'";
+   $product_query_run = mysqli_query($con , $select_all_product) ;
+   if(mysqli_num_rows($product_query_run)> 0){
+         while($fetch_product = mysqli_fetch_array($product_query_run)){
+            $id = $fetch_product['product_id'];
+            $insert_new_price = "UPDATE `product` SET is_discount = '0' , price_discount = '0' , percent_discount = '0' WHERE product_id = '$id'";
+            $product_query_run = mysqli_query($con , $insert_new_price) ;
+            redirect("../admin/offers.php" , "Discount Removed Successfully");
+         }
+      
+   }
+   else{
+      redirect("../admin/offers.php" , "No Discount");
+
+   }
+}
 ?>
