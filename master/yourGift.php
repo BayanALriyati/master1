@@ -81,7 +81,17 @@ if (isset($_GET['category'])){
                             
                             <div class="box-container">
                                 <div class="box flower">
-                                    <span class="discount">-<?= $item['percent_discount']?>%</span>
+                                <?php 
+                                    if ($item['is_discount'] == 1){
+                                        ?>
+                                            <div class="discount">-<?= $item['percent_discount']?>%</div>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <input type="hidden" name="price" value="<?=$item['percent_discount'];?>">
+                                        <?php
+                                    }
+                                    ?>
                                     <div class="image">
                                         <img src="./uploads/<?= $item['imageMain']?>"  alt="">
                                         <div class="icons">
@@ -92,7 +102,12 @@ if (isset($_GET['category'])){
                                     </div>
                                     <div class="content">
                                         <h3><?= $item['productName']?></h3>
-                                        <div class="price"> <?= $item['price_discount']?> <span><?= $item['price']?></span> </div>
+                                        <?php if ($item['is_discount'] == 1){ ?>
+
+<div class="price">JD <?= $item['price_discount']?> <span>JD<?= $item['price']?></span> </div>
+<?php } else { ?>
+<div class="price"> JD<?= $item['price']?></div> <?php } ?> 
+                                        <!-- <div class="price">JD <?= $item['price_discount']?> <span>JD<?= $item['price']?></span> </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +175,18 @@ if (isset($_GET['category'])){
                             <div class="box-container">
                          
                                 <div class="box flower">
-                                    <span class="discount">-<?= $item['percent_discount']?>%</span>
+                                <?php 
+      if ($item['is_discount'] == 1){
+         ?>
+            <div class="discount">-<?= $item['percent_discount']?>%</div>
+         <?php
+      } else {
+         ?>
+         <input type="hidden" name="price" value="<?=$item['percent_discount'];?>">
+         <?php
+      }
+      ?>
+                                    <!-- <div class="discount">-<?= $item['percent_discount']?>%</div> -->
                                     <div class="image">
                                         <img src="./uploads/<?= $item['imageMain']?>"  alt="">
                                         <div class="icons">
@@ -171,7 +197,11 @@ if (isset($_GET['category'])){
                                     </div>
                                     <div class="content">
                                         <h3><?= $item['productName']?></h3>
-                                        <div class="price"> <?= $item['price']?> <span><?= $item['price_discount']?></span> </div>
+                                        <?php if ($item['is_discount'] == 1){ ?>
+
+                                            <div class="price">JD <?= $item['price_discount']?> <span>JD<?= $item['price']?></span> </div>
+                                        <?php } else { ?>
+                                            <div class="price"> JD<?= $item['price']?></div> <?php } ?> 
                                     </div>
                                 </div>
                             </div>

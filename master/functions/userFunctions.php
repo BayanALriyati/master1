@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
  include ('config/connect.php');
 
 // read data from table

@@ -13,7 +13,7 @@ if (isset($_GET['category'])){
 ?>
 
 <div class="heading-main">
-    <h3>Your Cart</h3>
+    <!-- <h3>Your Cart</h3> -->
     <p><a href="index.php">home </a> <span> / <?= $category['categoryName']?></span></p>
 </div>
 
@@ -32,7 +32,19 @@ if (isset($_GET['category'])){
                     {
                 ?>
        <div class="box">
-           <span class="discount">-30%</span>
+
+       <?php 
+      if ($item['is_discount'] == 1){
+         ?>
+            <div class="discount">-<?= $item['percent_discount']?>%</div>
+         <?php
+      } else {
+         ?>
+         <input type="hidden" name="price" value="<?=$item['percent_discount'];?>">
+         <?php
+      }
+      ?>
+           <!-- <span class="discount">-30%</span> -->
            <div class="image">
                <img src="./uploads/<?= $item['imageMain']?>" alt="">
                <div class="icons">
@@ -43,7 +55,11 @@ if (isset($_GET['category'])){
            </div>
            <div class="content">
                <h3><?= $item['productName']?> </h3>
-               <div class="price"> <?= $item['price']?> <span>JOD30</span> </div>
+               <?php if ($item['is_discount'] == 1){ ?>
+
+<div class="price">JD <?= $item['price_discount']?> <span>JD<?= $item['price']?></span> </div>
+<?php } else { ?>
+<div class="price"> JD<?= $item['price']?></div> <?php } ?> 
            </div>
            
        </div>

@@ -42,10 +42,10 @@ include_once ('../config/connect.php') ;
                         $_SESSION ['message']="Category not found";
                     }
                 ?>
-                            <input type="text" name="add-on-category" placeholder="%" class="form-control inputOffer" aria-label="Text input with segmented dropdown button">
+                          <input type="text" name="add-on-category" placeholder="%" class="form-control inputOffer" aria-label="Text input with segmented dropdown button">
                   </div>
                 </form>
-            </div> 
+          </div> 
           <div>
             <form action="../functions/code.php" method="POST" enctype="multipart/form-data">
             <div class="input-group">
@@ -68,24 +68,86 @@ include_once ('../config/connect.php') ;
                 ?>
     
               </select>
-              </div>
+            </div>
             </form>
 	        </div>
+      </div>
+          <div class="head-title">
+                <div class="left">
+					        <h1 class="offer">1 Product</h1>
+			        	</div>
+                <div>
+            <form action="../functions/code.php" method="POST" enctype="multipart/form-data">
+
+                <div class="input-group mb-3">
+                    <button type="submit" class="btn btn-outline-secondary" name="add-discountProduct">Add Product</button>
+                      <select name="product" class="form-select selectOffer">
+                            <option selected>Choose Product</option>
+                            <?php 
+                                $product = getAll("product");
+                                    if(mysqli_num_rows($product)> 0 )
+                            {
+                                foreach ($product as $item) {
+                                    ?>
+                                    <!-- <input type="hidden" name="category"/> -->
+                                <option value="<?= $item["product_id"];?>"><?= $item["productName"];?></option>
+                                <?php
+                        }
+                    }
+                    else{
+                        $_SESSION ['message']="Product not found";
+                    }
+                ?>
+                          <input type="text" name="add-on-product" placeholder="%" class="form-control inputOffer" aria-label="Text input with segmented dropdown button">
+                  </div>
+                </form>
+          </div> 
+          <div>
+            <form action="../functions/code.php" method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+              <button class="btn btn-outline-secondary" type="submit" name="remove-discountProduct">Remove Product</button>
+              <select name="product" class="form-select selectOffer">
+                            <option selected>Choose Product</option>
+                            <?php 
+                                $product = getAll("product");
+                                    if(mysqli_num_rows($product)> 0 )
+                            {
+                                foreach ($product as $item) {
+                                    ?>
+                                <option value="<?= $item["product_id"];?>"><?= $item["productName"];?></option>
+                                <?php
+                        }
+                    }
+                    else{
+                        $_SESSION ['message']="Product not found";
+                    }
+                ?>
+    
+              </select>
+            </div>
+            </form>
+	        </div>
+	      </div>
+
         <div class="head-title">
                 <div class="left">
-					        <h1 class="offer">Product</h1>
+					        <h1 class="offer"> ALL Product</h1>
 			        	</div>
-            <div>
+          <div>
+            <form action="../functions/code.php" method="POST" enctype="multipart/form-data">
                 <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon1">ADD All Product</button>
-                    <input type="text" class="form-control inputOffer" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <button class="btn btn-outline-secondary" name="add-discountProduct" type="submit" id="button-addon1">ADD All Product</button>
+                    <input type="text" name="add-on-product" class="form-control inputOffer" placeholder="%" aria-label="Example text with button addon" aria-describedby="button-addon1">
                 </div>
-            </div> 
-            <div>
+            </form>
+          </div> 
+          <div>
+            <form action="../functions/code.php" method="POST" enctype="multipart/form-data">
                 <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon1">Remove All Product</button>
+                    <button name="remove-discountProduct" class="btn btn-outline-secondary" type="submit" id="button-addon1">Remove All Product</button>
                 </div>
-            </div> 
+            </form>
+          </div> 
 	      </div>
 		<!-- _____________ -->
 
