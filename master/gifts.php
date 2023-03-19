@@ -23,19 +23,18 @@ if (isset($_GET['category'])){
 <div class="box-container">
 <?php
                     
-                    // $product = getProBuCategory("category_id");
                     $sql="SELECT *FROM product WHERE category_id='$category_id' AND status='0'";
                     $product=mysqli_query($con,$sql);
                     if(mysqli_num_rows($product)> 0 )
                     {
-                      foreach($product as $item)
+                        foreach($product as $item)
                     {
                 ?>
-       <div class="box">
+        <div class="box">
 
-       <?php 
-      if ($item['is_discount'] == 1){
-         ?>
+        <?php 
+        if ($item['is_discount'] == 1){
+            ?>
             <div class="discount">-<?= $item['percent_discount']?>%</div>
          <?php
       } else {
@@ -44,7 +43,6 @@ if (isset($_GET['category'])){
          <?php
       }
       ?>
-           <!-- <span class="discount">-30%</span> -->
            <div class="image">
                <img src="./uploads/<?= $item['imageMain']?>" alt="">
                <div class="icons">

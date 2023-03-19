@@ -1021,10 +1021,14 @@ img {
    object-fit: contain;
  }
  
- .product-detail .right span {
-   display: inline-block;
+ .product-detail .right .price span {
+   /* display: inline-block;
    font-size: 1.5rem;
-   margin-bottom: 1rem;
+   margin-bottom: 1rem; */
+   font-size: 1.5rem;
+   color: #999;
+   font-weight: lighter;
+   text-decoration: line-through;
  }
  
  .product-detail .right h1 {

@@ -34,11 +34,12 @@ if (isset($_GET['product'])){
         </div>
         <div class="right">
         <h1><?= $product['productName']?></h1>
-        <!-- <p>
-            <?= $product['thumbnail_3']?>
-        </p> -->
-        <!-- <div class="price"><?= $product['price']?></div> -->
-        <div class="price">JD <?= $product['price_discount']?> <span>JD<?= $product['price']?></span> </div>
+        <?php if ($product['is_discount'] == 1){ ?>
+
+<div class="price">JD <?= $product['price_discount']?> <span>JD<?= $product['price']?></span> </div>
+<?php } else { ?>
+<div class="price"> JD<?= $product['price']?></div> <?php } ?> 
+        <!-- <div class="price">JD <?= $product['price_discount']?> <span>JD<?= $product['price']?></span> </div> -->
 
         <!-- <div class="price"><?= $product['price_discount']?>JOD<span><?= $product['price']?>JOD</span> </div> -->
 

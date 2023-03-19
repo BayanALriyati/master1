@@ -67,7 +67,6 @@ if (isset($_GET['category'])){
                 
                 <?php
                     
-                    // $product = getProBuCategory("category_id");
                     $sql="SELECT *FROM product WHERE category_id='$category_id' AND status='0'";
                     $product=mysqli_query($con,$sql);
                     if(mysqli_num_rows($product)> 0 )
@@ -107,26 +106,11 @@ if (isset($_GET['category'])){
 <div class="price">JD <?= $item['price_discount']?> <span>JD<?= $item['price']?></span> </div>
 <?php } else { ?>
 <div class="price"> JD<?= $item['price']?></div> <?php } ?> 
-                                        <!-- <div class="price">JD <?= $item['price_discount']?> <span>JD<?= $item['price']?></span> </div> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                         </div>
-                                    <!-- <div class="box card">
-                                        <div class="image">
-                                            <img src="./uploads/<?= $item['imageMain']?>" alt="">
-                                            <div class="icons">
-                                                <a href="#" class="fas fa-heart"></a>
-                                                <a href="#" class="cart-btn">add to cart</a>
-                                                <a href="./view.html" class="fas fa-share"></a>
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <h3><?= $item['productName']?></h3>
-                                            <div class="price"> <?= $item['price']?></div>
-                                        </div>
-                                    </div> -->
                                     <?php
                             }
                         }
@@ -186,7 +170,6 @@ if (isset($_GET['category'])){
          <?php
       }
       ?>
-                                    <!-- <div class="discount">-<?= $item['percent_discount']?>%</div> -->
                                     <div class="image">
                                         <img src="./uploads/<?= $item['imageMain']?>"  alt="">
                                         <div class="icons">
