@@ -117,10 +117,7 @@ include_once ('../config/connect.php');
             // header('Location: category.php');
         }
     }
-    // else
-    // {
-    //    echo "Id missing from url";
-    // }
+    
             ?>
     </div>
     </div>

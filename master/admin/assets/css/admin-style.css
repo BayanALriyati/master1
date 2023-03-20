@@ -11,7 +11,7 @@
 
 
 
-    --poppins: 'Poppins', sans-serif;
+    /* --poppins: 'Poppins', sans-serif;
 	--lato: 'Lato', sans-serif;
 
 	--light: #F9F9F9;
@@ -24,7 +24,7 @@
 	--yellow: #FFCE26;
 	--light-yellow: #FFF2C6;
 	--orange: #FD7238;
-	--light-orange: #FFE0D3;
+	--light-orange: #FFE0D3; */
  
  }
 
@@ -118,6 +118,21 @@
 	/* border-radius: 4.375rem !important; */
 
 }
+
+.btnIcons-remove{
+    padding: 10px 10px !important;
+	background-color: black !important;
+	color: var(--white) !important;
+	height: 2.6rem !important;
+}
+
+.btnIcons-remove:hover{
+    padding: 10px 10px !important;
+	background-color: white !important;
+	color: var(--black) !important;
+	height: 2.6rem !important;
+}
+
 .inputOffer{
 	border: 0.2rem solid  #621147 !important;
     padding: .5rem .5rem!important;
@@ -163,3 +178,78 @@
 	margin-left:2rem ;
     color: var(--dark-color);
 }
+
+.openBtn {
+	display: flex;
+	justify-content: center;
+  }
+  .openButton {
+	border: none;
+	border-radius: 5px;
+	background-color: #d81b60;
+	color: white;
+	padding: 14px 20px;
+	cursor: pointer;
+	/* position: fixed; */
+  }
+  .discountPopup {
+	position: relative;
+	text-align: center;
+	width: 100%;
+  }
+  .formPopup {
+	display: none;
+	position: fixed;
+	left: 45%;
+	top: 5%;
+	transform: translate(-50%, 5%);
+	border: 3px solid #999999;
+	z-index: 9;
+  }
+  .formContainer {
+    width: 30rem !important;
+    padding: 20px;
+    background-color: #fff;
+}
+  .formContainer input[type=text],
+  .formContainer input[type=password] {
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 20px 0;
+	border: none;
+	background: #eee;
+	text-align: center;
+  }
+  .formContainer input[type=text]:focus,
+  .formContainer input[type=password]:focus {
+	background-color: #ddd;
+	outline: none;
+  }
+  
+  .formContainer .btnDiscount {
+	padding: 12px 20px;
+	border: none;
+	background-color: #d81b60;
+	color: #fff;
+	cursor: pointer;
+	width: 100%;
+	margin-bottom: 15px;
+	opacity: 0.8;
+  }
+  .formContainer .btnCancel {
+	padding: 12px 20px;
+	border: none;
+	background-color: black;
+	color: #fff;
+	cursor: pointer;
+	width: 100%;
+	margin-bottom: 15px;
+	opacity: 0.8;
+  }
+  .formContainer .btnCancel {
+	background-color: black;
+  }
+  .formContainer .btn:hover,
+  .openButton:hover {
+	opacity: 1;
+  }

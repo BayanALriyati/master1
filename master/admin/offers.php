@@ -136,7 +136,7 @@ include_once ('../config/connect.php') ;
           <div>
             <form action="../functions/code.php" method="POST" enctype="multipart/form-data">
                 <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary" name="add-discountProduct" type="submit" id="button-addon1">ADD All Product</button>
+                    <button class="btn btn-outline-secondary" name="add-discountAllProduct" type="submit" id="button-addon1">ADD All Product</button>
                     <input type="text" name="add-on-product" class="form-control inputOffer" placeholder="%" aria-label="Example text with button addon" aria-describedby="button-addon1">
                 </div>
             </form>
@@ -144,7 +144,7 @@ include_once ('../config/connect.php') ;
           <div>
             <form action="../functions/code.php" method="POST" enctype="multipart/form-data">
                 <div class="input-group mb-3">
-                    <button name="remove-discountProduct" class="btn btn-outline-secondary" type="submit" id="button-addon1">Remove All Product</button>
+                    <button name="remove-discountAllProduct" class="btn btn-outline-secondary" type="submit" id="button-addon1">Remove All Product</button>
                 </div>
             </form>
           </div> 
@@ -167,10 +167,9 @@ include_once ('../config/connect.php') ;
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Add sale</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Remove Sale</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Delate</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">price discount</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -185,7 +184,7 @@ include_once ('../config/connect.php') ;
                             ?>
                             <tr></tr>
                             <td>
-                              <div class="d-flex px-2 py-1">
+                            <div class="d-flex px-2 py-1">
                                 <div>
                                   <img src="../uploads/<?= $fetch_product['imageMain'];?>" class="avatar avatar-sm me-3 border-radius-lg" alt="image">
                                 </div>
@@ -199,17 +198,15 @@ include_once ('../config/connect.php') ;
                             <?php 
                                   $product_category ="SELECT * FROM `product` INNER JOIN `category` ON 
                                     product.category_id = category.category_id";
-                                  // $product_category->execute();
                                   $sql_run=mysqli_query($con,$product_category);
-                                  // $fetch_product_category = mysqli_fetch_array($sql_run) ;
                                   if(mysqli_num_rows($sql_run)> 0){
-                 
+                                                                              
                                     while($fetch_product_category = mysqli_fetch_array($sql_run)){ 
                                         if($i==0 &&  $fetch_product['category_id'] == 
                                           $fetch_product_category['category_id'] ){
                                           $i++;
-                               ?>
-                                <div class="d-flex flex-column justify-content-center">
+                                ?>
+                                <div class="d-flex flex-column text-center">
                                   <h6 class="mb-0 text-sm"><?= $fetch_product_category['categoryName'];?></h6>
                                 </div>
                                 <?php
@@ -220,29 +217,66 @@ include_once ('../config/connect.php') ;
                               </div>
                             </td>
                             <td class="align-center text-center text-sm">
-                              <a href=""><i class="fa-solid fa-square-plus"></i></a>
+                                <h6 class="mb-0 text-sm"><?= $fetch_product['price'];?></h6>
                             </td>
                             <td class="align-center text-center text-sm">
-                              <a href=""><i class="fa-solid fa-square-minus delete1"></i></a>
+                            <?php if ($fetch_product['is_discount'] == 1){ ?>
+
+                              <h6 class="mb-0 text-sm"><?= $fetch_product['price_discount'];?></h6>
+                              <?php } else { ?>
+                            <h6 class="mb-0 text-sm" style="color:#d81b60;">Not Discount</h6> <?php } ?>
                             </td>
                             <td class="align-center text-center text-sm">
-                                <button><a href="editProduct.php?id=<?= $fetch_product['product_id']?>"><i class="fa-solid fa-pen-to-square fa-solid"></i></a></button>
-                            </td>
-                            <td class="align-center text-center text-sm">
-                                <form action="../functions/code.php" method="POST">
-                                 <input type="hidden" name="id" value="<?= $fetch_product['product_id']?>"/>
-                                 <!-- <button type="button" class="delateProduct_btn" 
-                                 value="<?= $fetch_product['product_id']?>"><i class="fa-solid fa-trash delete1"></i></button> -->
-                                <button type="submit" class="delateProduct_btn delateProduct_btn" name="delateProduct_btn" 
-                                 value="<?= $fetch_product['product_id']?>"><i class="fa-solid fa-trash delete1"></i></button>
+                            <?php if ($fetch_product['is_discount'] == 1) { ?>
+                              <h6 class="mb-0 text-sm"><?= $fetch_product['percent_discount'];?>%</h6>  
+                              <form action="../functions/code.php" method="POST">
+                                  <input type="hidden" name="product" value="<?= $fetch_product['product_id']?>"/>
+                                <button type="submit" class="btnIcons-remove" name="remove-discountProduct" 
+                                  value="<?= $fetch_product['product_id']?>"><i class="fa-sharp fa-solid fa-circle-minus"></i>
+                                </button>
                                 </form>
+                              <!-- <i class="fa-sharp fa-solid fa-circle-minus"></i> -->
+                              
+                              <?php } else { ?>
+                                <div class="openBtn">
+      <button class="openButton" onclick="openForm()"><i class="fa-sharp fa-solid fa-circle-plus"></i></button>
+    </div>
+    
+  <div class="discountPopup">
+  
+      <div class="formPopup" id="popupForm">
+      
+        <form action="../functions/code.php" class="formContainer">
+
+
+          <h2>Add Discount</h2>
+          <!-- <label for="email">
+            <strong>Price</strong>
+          </label><br/>
+          <input type="text" id="price"  name="price" value="<?= $fetch_product['price']?>" required><br/>
+          <label for="psw"> -->
+            <strong>Percent Discount</strong>
+          </label><br/>
+          <input type="hidden" name="product" value="<?= $fetch_product['product_id']?>"/>
+          <input type="text" placeholder="%" name="add-on-product" required><br/>
+          <button type="submit" class="btnDiscount" name="add-discountProduct">Add</button><br/>
+          <button type="submit" class="btnCancel" onclick="closeForm()">Close</button>
+        </form>
+       
+    </div>
+      
+    </div>
+                                <!-- <i class="fa-sharp fa-solid fa-circle-plus"></i> -->
+                                <?php } ?>                            
+                            <!-- <h6 class="mb-0 text-sm" style="color:#d81b60;">Not Discount</h6> -->
                             </td>
                           </tr>
                       <?php
                         }
                       }
-                         else
-                         {
+                    
+                          else
+                          {
                         
                           // redirect("../category.php","Don't found");
                           $_SESSION ['message']="Don't found";

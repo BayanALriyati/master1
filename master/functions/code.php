@@ -315,18 +315,20 @@ else if( isset($_POST['add-discountCategory'])){
 
    $category_id = $_POST['category'];
    $percent_discount = $_POST['add-on-category'] ;
-   $select_all_product ="SELECT * FROM `product` INNER JOIN `category` ON product.category_id = category.category_id";
+   $select_all_product ="SELECT * FROM `product` INNER JOIN `category` ON 
+     product.category_id = category.category_id";
    $product_query_run = mysqli_query($con , $select_all_product) ;
    if(mysqli_num_rows($product_query_run)> 0){
       while($fetch_product = mysqli_fetch_array($product_query_run)){
          $category_id = $fetch_product['category_id'];
-
+         $product_id = $fetch_product['product_id'];
+         $percent_discount = $_POST['add-on-category'];
            $price = $fetch_product['price'];
            $new_price = ($price) * (1-((int)$percent_discount/100));
          //   $new_price = $fetch_product['price'] - (($fetch_product['price'])*((int)$percent_discount/100));
 
            $insert_new_price = "UPDATE `product` SET  price_discount='$new_price' , is_discount = '1' , percent_discount='$percent_discount'
-                              Where category_id= '$category_id'";
+                              Where category_id= '$category_id' AND category_id= '$category_id'";
            $product_query_run = mysqli_query($con , $insert_new_price) ;
            redirect("../admin/offers.php" , "Discount Added Successfully");
        }
@@ -360,7 +362,7 @@ else if( isset($_POST['remove-discountCategory'])){
    }
 }
 
-else if( isset($_POST['add-discountProduct'])){
+else if( isset($_POST['add-discountAllProduct'])){
 
    $percent_discount = $_POST['add-on-product'] ;
    $select_all_product ="SELECT * FROM `product` WHERE is_discount='0'";
@@ -372,7 +374,7 @@ else if( isset($_POST['add-discountProduct'])){
          $new_price = $price * (1-((int)$percent_discount/100));
          //   $new_price = $fetch_product['price'] - (($fetch_product['price'])*((int)$percent_discount/100));
 
-           $insert_new_price = "UPDATE `product` SET  price_discount='$new_price' , is_discount = '1' , percent_discount='$percent_discount'";
+           $insert_new_price = "UPDATE `product` SET  price_discount='$new_price' , is_discount = '1' , percent_discount='$percent_discount' WHERE product_id = '$product_id'";
            $product_query_run = mysqli_query($con , $insert_new_price) ;
            redirect("../admin/offers.php" , "Discount Added Successfully");
        }
@@ -384,7 +386,7 @@ else if( isset($_POST['add-discountProduct'])){
     }
 }
 
-else if( isset($_POST['remove-discountProduct'])){
+else if( isset($_POST['remove-discountAllProduct'])){
 
    $select_all_product ="SELECT * FROM `product` WHERE is_discount='1'";
    $product_query_run = mysqli_query($con , $select_all_product) ;
