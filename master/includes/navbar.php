@@ -1,5 +1,5 @@
 <?php 
-session_start();
+// session_start();
 
 ?>
 
@@ -73,10 +73,10 @@ session_start();
       <a href="home.php" class="logo"><img src="assets/images/logo-color.png" alt="logo"></a>
 
       <nav class="navbar">
-      <a href="./index.php">Home</a>
+         <a href="./index.php">Home</a>
          <a href="./yourGift.php">Your Gift</a>
-         <a href="./aboutUs.html">About Us</a>        
-         <a href="./contactUs.html">Contact Us</a>
+         <a href="./aboutUs.php">About Us</a>        
+         <a href="./contactUs.php">Contact Us</a>
       </nav>
 
       <div class="icons">
@@ -95,7 +95,7 @@ session_start();
            {
             ?>
          <p class="name"><?= $_SESSION['auth_user']['name']; ?></p>
-          <a><img src="../Uploads/bootstrap.png" alt="logo"></a>
+          <a><img src="../Uploads/<?= $_SESSION['auth_user']['image']; ?>" alt="logo"></a>
          <!-- <div class="name"><img src="../Uploads/<?= $_SESSION['auth_user']['image']; ?>" alt="logo"></div> -->
          <div class="flex">
             <a href="profile.php" class="btn">profile</a>
@@ -115,10 +115,10 @@ session_start();
          ?>
       </div>
       <nav class="bottom-nav">
-      <a href="./index.html" class="fas fa-home"></a>
-      <a href="./yourGift.html" class="fas fa-gift"></a>
-      <a href="./aboutUs.html" class="fas fa-question"></a>
-      <a href="./contactUs.html" class="fas fa-address-card"></a>
+      <a href="./index.php" class="fas fa-home"></a>
+      <a href="./yourGift.php" class="fas fa-gift"></a>
+      <a href="./aboutUs.php" class="fas fa-question"></a>
+      <a href="./contactUs.php" class="fas fa-address-card"></a>
   </nav>
 
    </section>

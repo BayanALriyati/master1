@@ -15,7 +15,7 @@ include_once ('../config/connect.php') ;
 				<div class="left">
 					<h1>Product</h1>
 				</div>
-				<a href="addProduct.php" class="btn-download">
+				<a href="addusers.php" class="btn-download">
 				<i class="fa-solid fa-plus"></i>
 				<span class="text">Add New Product</span>
 				</a>
@@ -38,8 +38,6 @@ include_once ('../config/connect.php') ;
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
-                      <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Add sale</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Remove Sale</th> -->
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Delate</th>
                     </tr>
@@ -88,12 +86,6 @@ include_once ('../config/connect.php') ;
                               ?>
                               </div>
                             </td>
-                            <!-- <td class="align-center text-center text-sm">
-                              <a href=""><i class="fa-solid fa-square-plus"></i></a>
-                            </td>
-                            <td class="align-center text-center text-sm">
-                              <a href=""><i class="fa-solid fa-square-minus delete1"></i></a>
-                            </td> -->
                             <td class="align-center text-center text-sm">
                                 <button><a href="editProduct.php?id=<?= $fetch_product['product_id']?>"><i class="fa-solid fa-pen-to-square fa-solid"></i></a></button>
                             </td>

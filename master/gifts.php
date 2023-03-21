@@ -17,9 +17,10 @@ if (isset($_GET['category'])){
     <p><a href="index.php">home </a> <span> / <?= $category['categoryName']?></span></p>
 </div>
 
-                
-<section class="products" id="product">
 
+<section class="products" id="product">
+<div class="row">
+<div class="col-lg-3 col-md-3">
 <div class="box-container">
 <?php
                     
@@ -76,8 +77,10 @@ if (isset($_GET['category'])){
                     ?>
       
 </div>
-
+</div>
+</div>
 </section>
+
 
 
 <?php 

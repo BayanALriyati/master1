@@ -13,7 +13,8 @@
         <li class="nav-item">
           <a class="nav-link text-white active bg-gradient-primary" href="../">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
+              <!-- <i class="material-icons opacity-10">dashboard</i> -->
+              <i class="fa-solid fa-house"></i>
             </div>
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
@@ -21,7 +22,8 @@
         <li class="nav-item">
           <a class="nav-link text-white active bg-gradient-primary" href="category.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
+              <!-- <i class="material-icons opacity-10">table_view</i> -->
+              <i class="fa-sharp fa-solid fa-gifts"></i>
             </div>
             <span class="nav-link-text ms-1">Category</span>
           </a>
@@ -29,7 +31,8 @@
         <li class="nav-item">
           <a class="nav-link text-white active bg-gradient-primary" href="product.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
+              <!-- <i class="material-icons opacity-10">table_view</i> -->
+              <i class="fa-sharp fa-solid fa-gifts"></i>
             </div>
             <span class="nav-link-text ms-1">Products</span>
           </a>
@@ -37,9 +40,25 @@
         <li class="nav-item">
           <a class="nav-link text-white active bg-gradient-primary" href="offers.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
+            <i class="fa-sharp fa-solid fa-percent"></i>        
             </div>
             <span class="nav-link-text ms-1">Offers</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="users.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <span class="nav-link-text ms-1">Users</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="admins.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-badge-percent"></i>            
+            </div>
+            <span class="nav-link-text ms-1">Admin</span>
           </a>
         </li>
       </ul>

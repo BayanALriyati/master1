@@ -240,13 +240,16 @@ include_once ('../config/connect.php') ;
                               <?php } else { ?>
                                 <div class="openBtn">
       <button class="openButton" onclick="openForm()"><i class="fa-sharp fa-solid fa-circle-plus"></i></button>
+      <input type="hidden" name="product" value="<?= $fetch_product['product_id']?>"/>
+
     </div>
     
   <div class="discountPopup">
   
       <div class="formPopup" id="popupForm">
-      
-        <form action="../functions/code.php" class="formContainer">
+      <form action="../functions/code.php" method="POST" enctype="multipart/form-data" class="formContainer">
+
+        <!-- <form action="../functions/code.php" class="formContainer"> -->
 
 
           <h2>Add Discount</h2>
@@ -259,7 +262,9 @@ include_once ('../config/connect.php') ;
           </label><br/>
           <input type="hidden" name="product" value="<?= $fetch_product['product_id']?>"/>
           <input type="text" placeholder="%" name="add-on-product" required><br/>
-          <button type="submit" class="btnDiscount" name="add-discountProduct">Add</button><br/>
+          <button type="submit" class="btn btn-outline-secondary" name="add-discountProduct">Add Product</button><br/>
+
+          <!-- <button type="submit" class="btnDiscount" name="add-discountProduct">Add</button><br/> -->
           <button type="submit" class="btnCancel" onclick="closeForm()">Close</button>
         </form>
        

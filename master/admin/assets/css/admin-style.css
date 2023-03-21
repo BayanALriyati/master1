@@ -238,17 +238,26 @@
   }
   .formContainer .btnCancel {
 	padding: 12px 20px;
-	border: none;
+	border: var(--border);
+	border-radius: 50%;
 	background-color: black;
 	color: #fff;
 	cursor: pointer;
-	width: 100%;
+	width: 50%;
 	margin-bottom: 15px;
 	opacity: 0.8;
+	/* padding: 8px 10px !important;
+	background-color: black !important;
+	color: var(--white) !important;
+	height: 2.6rem !important; */
   }
-  .formContainer .btnCancel {
+  /* .formContainer .btnCancel {
 	background-color: black;
-  }
+	padding: 8px 10px !important;
+	background-color: black !important;
+	color: var(--white) !important;
+	height: 2.6rem !important;
+  } */
   .formContainer .btn:hover,
   .openButton:hover {
 	opacity: 1;

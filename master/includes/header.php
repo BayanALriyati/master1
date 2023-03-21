@@ -1,5 +1,5 @@
 <?php
-//  session_start();
+ session_start();
 ?>
 
 <!DOCTYPE html>
@@ -30,5 +30,5 @@
     
     <?php 
 
-    include('includes/navbar.php') ;
+include_once('./includes/navbar.php') ;
     ?>

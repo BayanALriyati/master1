@@ -4,8 +4,68 @@
  include_once ('../config/connect.php');
  include_once ('../functions/myfunctions.php') ;
 
+if(isset($_POST['editUser_btn'])){
+   $id = $_POST['id'];
+   $name = $_POST['name'];
+   $email = $_POST['email'];
+   $role = ($_POST['role']) ? '1':'0'; 
+   $new_image = $_FILES['image']['name'];
+   $image_size = $_FILES['image']['size'];
+   $image_tmp_name = $_FILES['image']['tmp_name'];
+   $image_folder = '../Uploads/'.$new_image; 
+   $old_image = $_POST['old_image'];  
 
-if(isset($_POST['addCategory_btn'])){
+   if($new_image != ""){
+      $update_image = $new_image ;
+   }
+   else
+   {
+       $update_image = $old_image ;
+   }
+
+
+   $update_query = "UPDATE `users` SET name='$name' ,email='$email' , role='$role' , image='$update_image' WHERE User_id='$id'" ;
+   $update_query_run = mysqli_query($con , $update_query);
+
+    if ($update_query_run)
+    {
+       if($_FILES['image']['name'] != "")
+      {
+        move_uploaded_file($image_tmp_name , $image_folder);
+        if(file_exists("../uploads/".$old_image))
+        {
+           unlink("../uploads/".$old_image);
+        }
+      }
+       redirect("../admin/users.php" , "Users Update Successfully");
+    }
+} 
+
+else if(isset($_POST['delateUser_btn'])){
+   
+    $id =  $_POST['id'];
+    $user_query = "SELECT * FROM users WHERE User_id = '$id' " ;
+    $user_query_run = mysqli_query($con , $user_query) ;
+    $user_data = mysqli_fetch_array($user_query_run) ;
+    $image = $user_data['image'] ;
+ 
+    $delate_query = " DELETE FROM `users` WHERE User_id = '$id' ";
+    $delate_query_run = mysqli_query($con , $delate_query);
+
+    if($delate_query_run)
+    {
+       if(file_exists("../uploads/".$image))
+       {
+          unlink("../uploads/".$image);
+       }
+       redirect("../admin/users.php" , "User Deleted Successfully");
+    }
+    else{
+       redirect("../admin/users.php" , "Something went wrong");
+    }
+}
+
+else if(isset($_POST['addCategory_btn'])){
    
     $categoryName = $_POST['name'];
     $slug = $_POST['slug'];
