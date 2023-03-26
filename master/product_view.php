@@ -3,6 +3,7 @@ include_once('includes/header.php');
 include_once('functions/userFunctions.php');
 ?>
 <?php 
+
 if (isset($_GET['product'])){
     $product_slug = $_GET['product'];
     $product_data = getSlugActive("product" , $product_slug);
@@ -10,8 +11,9 @@ if (isset($_GET['product'])){
     if($product){
         // $category_id = $category['category_id'];
         ?>
+        
 <section class="section product-detail">
-    <div class="details container">
+    <div class="details container product-data">
         
         <div class="left">
             <div class="main">
@@ -43,16 +45,25 @@ if (isset($_GET['product'])){
 
         <!-- <div class="price"><?= $product['price_discount']?>JOD<span><?= $product['price']?>JOD</span> </div> -->
 
-        <form class="form-view">
-            <input type="number" placeholder="1" />
-            <a href="./yourCart.html" class="addCart">Add To Cart</a>
+        <form class="form-view">  
+             
+         <div class="input-group mb-3">
+            <buton type="button" class="input-group-text addCart decrement-btn">-</buton>
+            <input type="text" class="form-control input-qty" value="1" disabled>
+            <buton type="button" class="input-group-text addCart increment-btn">+</buton>
+         </div>
+
+            <!-- <input type="number" placeholder="1" /> -->
+            <button href="./yourCart.html" class="addCart addCartBtn"><i class="fas fa-shopping-cart"></i>Add To Cart</button>
+            <button href="./yourCart.html" class="addCart" class="fas fa-heart"><i class="fas fa-heart"></i>Add To Favorite</button>
+
         </form>
-        <form class="form-view">
+        <!-- <form class="form-view"> -->
             <p><label><?= $product['description']?></label></p>
             <!-- <textarea id="letter" class="letter" name="letter" rows="4" cols="50">Write the letter here</textarea> -->
             <br>
             <!-- <input type="submit" value="Add" class="add"> -->
-            </form>
+            <!-- </form> -->
         </div>
     </div>
 </section>

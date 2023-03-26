@@ -197,6 +197,7 @@ section{
    color: var(--dark-color);
    text-align: center;
 }
+
 .form-control {
    display: block;
    width: 100%;
@@ -1039,11 +1040,11 @@ img {
 
  }
  
- .product-detail .right div {
+ /* .product-detail .right div {
    display: inline-block;
    position: relative;
    z-index: 1;
- }
+ } */
  
  .product-detail .form-view {
    margin-bottom: 2rem;
@@ -1064,49 +1065,57 @@ img {
 
  }
  
- .product-detail .form-view input {
+ 
+.product-detail .form-view input {
    padding: 1rem;
    text-align: center;
-   width: 5rem;
-   height: 4rem;
-   margin-right: 2rem;
-   font-size:x-large;
+   max-width: 5rem;
+   height: 5rem;
+   margin: auto 1rem;
+   font-size: x-large;
    font-weight: bolder;
    background: var(--white);
    color: var(--dark-color);
    box-shadow: var(--box-shadow);
+   border: var(--border)
  }
+
+ .input-group{
+   align-items: stretch !important;
+   justify-content: start !important;
+   flex-direction: row !important;
+   flex-wrap: nowrap !important;
+}
+
+.input-group-text{
+   min-width: 4rem;
+   background-color: var(--dark-color);
+   color: var(--white);
+   padding-left: 1.5rem;
+   font-size: x-large;
+}
  
  .product-detail .form-view .addCart {
    background: var(--dark-color);
-   padding: 0.8rem 4rem;
+   padding: .8rem 4rem;
    color: var(--white);
    border-radius: 3rem;
    text-decoration: none;
    font-size: large;
    font-weight: bolder;
+   margin: 3rem 1rem;
+
+ }
+ .product-detail .form-view .addCart:hover {
+ color:var(--black);
+   background-image: url(../images/heading-bg.jpg);
  }
 
- .product-detail .form-view .add {
-   background: var(--dark-color);
-   width: 30%;
-   padding: 0.3rem 0rem;
-   color: var(--white);
-   border-radius: 3rem;
-   margin: 2rem 0;
- }
-
- .product-detail .form-view .letter {
-   padding: 0.8rem;
-   border: var(--border) ;
-   box-shadow: var(--box-shadow);
-   margin: 2rem 0rem;
- }
-
- .product-detail .form-view p {
-   padding: 0.8rem;
-   margin: 2rem 0rem;
- }
+ .fas {
+   color: white;
+   font-size: x-large;
+   background-color: transparent;
+}
 
 .section .title h2{
    text-align: center;
@@ -1777,5 +1786,4 @@ a.start:hover {
   float:right;
   margin:10px;
 }
-
 
