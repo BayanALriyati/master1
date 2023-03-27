@@ -1,6 +1,13 @@
 <?php 
 include_once('includes/header.php');
 include_once('functions/userFunctions.php');
+// session_start() ;
+// if(isset($_SESSION['auth'])){
+
+//     $user_id = $_SESSION['userId'];
+// }else{
+//    $user_id = '';
+// }
 ?>
 <?php 
 
@@ -11,11 +18,10 @@ if (isset($_GET['product'])){
     if($product){
         // $category_id = $category['category_id'];
         ?>
-        
 <section class="section product-detail">
-    <div class="details container product-data">
-        
-        <div class="left">
+<div class="details container">
+
+      <div class="left">
             <div class="main">
                 <img src="./uploads/<?= $product['imageMain']?>" alt="Image Main" id="ProductImg" />
             </div>
@@ -31,10 +37,10 @@ if (isset($_GET['product'])){
             </div>
             <div class="thumbnail">
                 <img src="./uploads/<?= $product['thumbnail_3']?>" alt="Thumbnail" class="small-img"/>
-            </div>
+           </div>
         </div>
-        </div>
-        <div class="right">
+      </div>
+    <div class="right">
         <h1><?= $product['productName']?></h1>
         <?php if ($product['is_discount'] == 1){ ?>
 
@@ -44,29 +50,27 @@ if (isset($_GET['product'])){
         <!-- <div class="price">JD <?= $product['price_discount']?> <span>JD<?= $product['price']?></span> </div> -->
 
         <!-- <div class="price"><?= $product['price_discount']?>JOD<span><?= $product['price']?>JOD</span> </div> -->
-
-        <form class="form-view">  
-             
-         <div class="input-group mb-3">
+      <form class="form-view">
+        
+         <div class="input-group mb-3 ">
             <buton type="button" class="input-group-text addCart decrement-btn">-</buton>
-            <input type="text" class="form-control input-qty" value="1" disabled>
+            <input type="text" class="form-control input-qty" name="qty" value="1" disabled>
             <buton type="button" class="input-group-text addCart increment-btn">+</buton>
          </div>
 
             <!-- <input type="number" placeholder="1" /> -->
-            <button href="./yourCart.html" class="addCart addCartBtn"><i class="fas fa-shopping-cart"></i>Add To Cart</button>
+            <!-- name="addToCartBtn" -->
+            <button class="addCart addToCartBtn" value="<?= $product['product_id'];?>"><i class="fas fa-shopping-cart"></i>Add To Cart</button>
             <button href="./yourCart.html" class="addCart" class="fas fa-heart"><i class="fas fa-heart"></i>Add To Favorite</button>
-
-        </form>
-        <!-- <form class="form-view"> -->
+        <!-- </div> -->
+      </form>
             <p><label><?= $product['description']?></label></p>
-            <!-- <textarea id="letter" class="letter" name="letter" rows="4" cols="50">Write the letter here</textarea> -->
             <br>
-            <!-- <input type="submit" value="Add" class="add"> -->
-            <!-- </form> -->
-        </div>
+           
     </div>
+</div>
 </section>
+
     <?php
         }
 
@@ -85,4 +89,4 @@ if (isset($_GET['product'])){
 
 
 
-<?php include('includes/footer.php') ?>
+<?php include('./includes/footer.php') ?>

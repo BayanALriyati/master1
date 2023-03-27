@@ -103,19 +103,26 @@
      
      </div>
      <!-- End of .container -->
-   
+     <script src="assets/js/jquery-3.6.3.min.js"></script>
+
+     <script src="assets/js/custom.js"></script>
+
+     
    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-   <script src="assets/js/custom.js"></script>
-   <script src="assets/js/script.js"></script>
+   <script src="./assets/js/script.js"></script>
    <script src="assets/js/silder.js"></script>
     <!-- Alertify Js -->
    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
    <script>
+           alertify.set('notifier' , 'position' , 'top-center');
+
      <?php 
+      
+
      if (isset($_SESSION ['message']))
-     { ?>
-         alertify.set('notifier' , 'position' , 'top-center');
+     {        
+      ?> 
          alertify.success('<?= $_SESSION ['message']?>');
      <?php 
          unset($_SESSION ['message']);
@@ -154,19 +161,124 @@ document.querySelector('#user-btn').onclick = () =>{
 }
   </script>
   <script>
-const decrementBtn = document.querySelector('.decrement-btn');
-const incrementBtn = document.querySelector('.increment-btn');
-const inputQty = document.querySelector('.input-qty');
+$(document).ready(function(){
 
-decrementBtn.addEventListener('click', () => {
-  if (inputQty.value > 1) {
-    inputQty.value = parseInt(inputQty.value) - 1;
-  }
+
+
+$('.increment-btn').click(function (e) {
+
+e.preventDefault();
+
+var qty = $('.input-qty').val();
+
+// alert(qty);
+
+// var qty = $(this).closest('.product_data').find('.input-qty').val();
+
+
+
+var value = parseInt(qty, 20); 
+value = isNaN(value)? 0 : value;
+
+
+if(value < 20)
+{
+   value++;
+
+  //  $(this).closest('.product_data').find('.input-qty').val(value);
+  $('.input-qty').val(value);
+
+}
+
+
+ });
+ $('.decrement-btn').click(function (e) {
+
+e.preventDefault();
+
+var qty = $('.input-qty').val();
+
+// alert(qty);
+
+// var qty = $(this).closest('.product_data').find('.input-qty').val();
+
+
+
+var value = parseInt(qty, 20); 
+value = isNaN(value)? 0 : value;
+
+
+if(value > 1)
+{
+   value--;
+
+  //  $(this).closest('.product_data').find('.input-qty').val(value);
+  $('.input-qty').val(value);
+
+}
+
+ });
+ $('.addToCartBtn').click(function (e){
+    e.preventDefault();
+    var qty = $('.input-qty').val();
+
+    // var qty = $(this).closest('.product-data').find('.input-qty').val();
+    var product_id = $(this).val();
+    alert(product_id);
+    // $.ajax({
+    //          mothed: "POST",
+    //          url:"functions/handleCart.php",
+    //          data:{
+    //           'product_id': product_id,
+    //           'product_qty': qty,
+    //           'scope' : "add" ,
+    //         },
+    //           success : function (response){
+    //             if(response == 201){
+    //               alertify.success ("Product Added TO Cart")
+    //             }
+    //             else if (response == 401){
+    //               alertify.success ("Login To Continue")
+    //             }
+    //             else if (response == 500){
+    //               alertify.success ("Something Error")
+    //             }
+    //          }
+             
+    //         })
+   }) 
 });
 
-incrementBtn.addEventListener('click', () => {
-  inputQty.value = parseInt(inputQty.value) + 1;
-});
 </script>
+<!-- <script>
+  const inputQty = document.querySelector('.input-qty');
+   $('.addCartBtn').click(function (e){
+    e.preventDefault();
+    var qty = $(this).closest('.product-data').find('.input-qty').val();
+    var product_id = $(this).val();
+    alert(product_id);
+    $.ajax({
+             mothed: "POST",
+             url:"functions/handleCart.php",
+             data:{
+              'product_id': product_id,
+              'product_qty': qty,
+              'scope' : "add" ,
+            },
+              success : function (response){
+                if(response == 201){
+                  alertify.success ("Product Added TO Cart")
+                }
+                else if (response == 401){
+                  alertify.success ("Login To Continue")
+                }
+                else if (response == 500){
+                  alertify.success ("Something Error")
+                }
+             }
+             
+            })
+   }) 
+</script>  -->
    </body>
    </html>

@@ -53,7 +53,9 @@ if (isset($_POST['register'])){
             }
             else
             {
-                redirect("../register.php","password do not match");
+                redirect("../register.php","password do not match");  
+                 
+                   
                 // $_SESSION ['message'] = "password do not match";
                 // header('Location: ../register.php');
             }
