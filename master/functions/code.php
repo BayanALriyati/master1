@@ -507,17 +507,20 @@ else if( isset($_POST['remove-discountProduct'])){
       redirect("../admin/offers.php" , "No Discount");
 
    }
-}
 
-else if( isset($_POST['addTOcart'])){
-   $user_id = $_SESSION['id']
-   $productId = $_POST['product_id'];
-   $product_name = $_POST['name'];
-   $product_price = $_POST['price'];
-   $product_image = $_POST['image'];
-   $product_qty = $_POST['qty'];
-   $send_to_cart ="INSERT INTO cart (user_id , product_id , product_name , product_price , product_image , product_qty)
-   VALUES ('$user_id' , '$productId' , '$product_name' , '$product_price','$product_image' , '$product_qty')";
-   $send_to_cart = mysqli_query($con , $send_to_cart) ;
 }
+// else if( isset($_POST['addTOcart'])){
+//    // $_SESSION['auth_user']['user_id'];
+//    $productId = $_POST['product_id'];
+//    $product_name = $_POST['name'];
+//    $product_price = $_POST['price'];
+//    $product_image = $_POST['image'];
+//    $product_qty = $_POST['qty'];
+//    $send_to_cart ="INSERT INTO cart ( product_id , product_name , product_price , product_image , product_qty)
+//    VALUES ( '$productId' , '$product_name' , '$product_price','$product_image' , '$product_qty')";
+//    $send_to_cart = mysqli_query($con , $send_to_cart) ;
+// }
+
+
+
 ?>

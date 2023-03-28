@@ -104,10 +104,14 @@
      </div>
      <!-- End of .container -->
      <script src="assets/js/jquery-3.6.3.min.js"></script>
+     <script src = "https://ajax.googleapis.com/ajax/libs/jQuery/3.3.1/jQuery.min.js"></script>
 
      <script src="assets/js/custom.js"></script>
 
-     
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/perfect-scrollbar.min.js"></script>
+  <script src="assets/js/smooth-scrollbar.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
    <script src="./assets/js/script.js"></script>
@@ -115,14 +119,11 @@
     <!-- Alertify Js -->
    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
    <script>
-           alertify.set('notifier' , 'position' , 'top-center');
-
      <?php 
-      
-
      if (isset($_SESSION ['message']))
      {        
       ?> 
+          alertify.set('notifier' , 'position' , 'top-center');
          alertify.success('<?= $_SESSION ['message']?>');
      <?php 
          unset($_SESSION ['message']);
@@ -224,28 +225,44 @@ if(value > 1)
 
     // var qty = $(this).closest('.product-data').find('.input-qty').val();
     var product_id = $(this).val();
-    alert(product_id);
-    // $.ajax({
-    //          mothed: "POST",
-    //          url:"functions/handleCart.php",
-    //          data:{
-    //           'product_id': product_id,
-    //           'product_qty': qty,
-    //           'scope' : "add" ,
-    //         },
-    //           success : function (response){
-    //             if(response == 201){
-    //               alertify.success ("Product Added TO Cart")
-    //             }
-    //             else if (response == 401){
-    //               alertify.success ("Login To Continue")
-    //             }
-    //             else if (response == 500){
-    //               alertify.success ("Something Error")
-    //             }
-    //          }
-             
-    //         })
+    // alert(qty);
+    $.ajax({
+            method: "POST",
+            url:"../functions/handleCart.php",
+            //  url:"http://localhost/master1/master/functions/handleCart.php",
+             data:{
+              'product_id': product_id,
+              'product_qty': qty,
+              'scope' : "add" ,
+            },
+              success : function (response){
+                
+                if(response == 201){
+                  alertify.success ("Product Added TO Cart");
+                  alert ("pppp");
+                  // console.log(response , "pppp");
+
+                }
+                else if (response == 401){
+                  alertify.success ("Login To Continue");
+                  // console.log(response , "qty");
+
+                  alert("qty");
+                }
+                else if (response == 500){
+                  alertify.success ("Something Went Wrong");
+                  // console.log(response , "q/ty");
+
+                  alert("q/ty");
+                }
+                return ;
+                            console.log(response , "222bbb");
+
+
+             }
+            //  console.log(response , "222bbb");
+           
+     })
    }) 
 });
 

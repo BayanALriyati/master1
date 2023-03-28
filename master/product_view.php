@@ -8,6 +8,7 @@ include_once('functions/userFunctions.php');
 // }else{
 //    $user_id = '';
 // }
+
 ?>
 <?php 
 
@@ -45,25 +46,45 @@ if (isset($_GET['product'])){
         <?php if ($product['is_discount'] == 1){ ?>
 
 <div class="price">JD <?= $product['price_discount']?> <span>JD<?= $product['price']?></span> </div>
+
 <?php } else { ?>
 <div class="price"> JD<?= $product['price']?></div> <?php } ?> 
         <!-- <div class="price">JD <?= $product['price_discount']?> <span>JD<?= $product['price']?></span> </div> -->
 
         <!-- <div class="price"><?= $product['price_discount']?>JOD<span><?= $product['price']?>JOD</span> </div> -->
-      <form class="form-view">
-        
-         <div class="input-group mb-3 ">
+      <form class="form-view" action="./functions/handleCart.php" method="POST" enctype="multipart/form-data">
+      <!-- <form class="form-view" method="POST" enctype="multipart/form-data"> -->
+      <!-- <div class="form-view"> -->
+
+      <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
+      <input type="hidden" name="name" value="<?= $product['productName']; ?>">
+      <?php 
+      if ($product['is_discount'] == 1){
+         ?>
+         <input type="hidden" name="price" value="<?=$product['price_discount'];?>">
+         <?php
+      } else {
+         ?>
+         <input type="hidden" name="price" value="<?=$product['price'];?>">
+         <?php
+      }
+      ?>     
+      <input type="hidden" name="image" value="<?= $product['imageMain']; ?>">
+                  <input type="number" name="qty" class="qty" min="1" max="99"  value="1">
+
+         <!-- <div class="input-group mb-3 ">
             <buton type="button" class="input-group-text addCart decrement-btn">-</buton>
             <input type="text" class="form-control input-qty" name="qty" value="1" disabled>
             <buton type="button" class="input-group-text addCart increment-btn">+</buton>
-         </div>
+         </div> -->
 
-            <!-- <input type="number" placeholder="1" /> -->
-            <!-- name="addToCartBtn" -->
-            <button class="addCart addToCartBtn" value="<?= $product['product_id'];?>"><i class="fas fa-shopping-cart"></i>Add To Cart</button>
-            <button href="./yourCart.html" class="addCart" class="fas fa-heart"><i class="fas fa-heart"></i>Add To Favorite</button>
-        <!-- </div> -->
+            <button type="submit" class="addCart" name="addTOcart"><i class="fas fa-shopping-cart"></i>Add To Cart</button>
+            
+            <button type="submit" class="addCart addToCartBtn" value="<?= $product['product_id'];?>"><i class="fas fa-shopping-cart"></i>Add To Cart</button>
+            <!-- <button href="./yourCart.html" class="addCart" class="fas fa-heart"><i class="fas fa-heart"></i>Add To Favorite</button> -->
+    </div>
       </form>
+
             <p><label><?= $product['description']?></label></p>
             <br>
            

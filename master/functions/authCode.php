@@ -82,7 +82,7 @@ if(mysqli_num_rows($login_query_run) > 0)
         $Role = $userLogin['role'];
 
         $_SESSION ['auth_user'] = [
-              'id'=> $userId ,
+              'user_id'=> $userId ,
               'name'=> $userName ,
               'email'=> $userEmail,
               'image'=> $image 
