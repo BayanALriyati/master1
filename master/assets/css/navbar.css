@@ -88,10 +88,7 @@ html::-webkit-scrollbar-thumb{
 }
 
 .header .flex .icons > *{
-   /* margin-left: 1.5rem;
-   font-size: 2.5rem;
-   color:var(--black);
-   cursor: pointer; */
+  
    cursor: pointer;
    margin-left: .5rem;
    height:4.5rem;
@@ -104,14 +101,20 @@ html::-webkit-scrollbar-thumb{
 }
 
 .header .flex .icons > *:hover{
-   /* color: var(--dark-color); */
-   /* color:var(--white); */
    background: var(--dark-color);
    transform: rotate(360deg);
 }
 
-.header .flex .icons span{
-   font-size: 2rem;
+.header .flex .icons #user{
+   font-size: 3rem;
+   text-decoration-line: underline ;
+   background-color: var(--pink);
+}
+
+.header .flex .icons #user:hover{
+   font-size: 3rem;
+   text-decoration-line:none ;
+   
 }
 
 #menu-btn{
@@ -125,7 +128,7 @@ html::-webkit-scrollbar-thumb{
    text-align: center;
    position: absolute;
    top:125%; right:2rem;
-   width: 30rem;
+   width: 20rem;
    display: none;
    animation: fadeIn .2s linear;
 }

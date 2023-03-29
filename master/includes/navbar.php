@@ -86,6 +86,7 @@
          <div class="fas fa-search"></div>
          <div class="fas fa-shopping-cart"></div>
          <div id="user-btn" class="fas fa-user"></div>
+         <!-- <span id="user" style="cursor:default;"><?= $_SESSION['auth_user']['name']; ?></span> -->
          <div id="menu-btn" class="fas fa-bars"></div>
       </div>
 
@@ -94,8 +95,8 @@
            if(isset($_SESSION['auth']))
            {
             ?>
-         <p class="name"><?= $_SESSION['auth_user']['name']; ?></p>
-          <a><img src="../Uploads/<?= $_SESSION['auth_user']['image']; ?>" alt="logo"></a>
+         <!-- <p class="name"><?= $_SESSION['auth_user']['name']; ?></p>
+          <a><img src="../Uploads/<?= $_SESSION['auth_user']['image']; ?>" alt="logo"></a> -->
          <!-- <div class="name"><img src="../Uploads/<?= $_SESSION['auth_user']['image']; ?>" alt="logo"></div> -->
          <div class="flex">
             <a href="profile.php" class="btn">profile</a>

@@ -18,7 +18,9 @@
    <script src = "https://ajax.aspnetCDN.com/ajax/jQuery/jQuery-3.3.1.min.js"></script>
    <!-- custom css file link  -->
    <link rel="stylesheet" href="assets/css/style.css">
-   <link rel="stylesheet" href="assets/css/header.css">
+   <link rel="stylesheet" href="assets/css/navbar.css">
+   <!-- <link rel="stylesheet" href="assets/css/profile.css"> -->
+
 
      <!-- Alertify Js -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
