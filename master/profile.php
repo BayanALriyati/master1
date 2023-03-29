@@ -7,7 +7,7 @@ include_once('functions/userFunctions.php');
  ?>
 
 <div>
-      <h1>Welcome {userObj.userName}, Good Evening </h1>
+      <h1 id="userProfile">Welcome {userObj.userName}, Good Evening </h1>
       <div class="card card-body" id="profileCard">
         <div class="row">
           <div class="col-md-3 col-sm-2 mx-auto" id="profileImageParent">
@@ -18,6 +18,7 @@ include_once('functions/userFunctions.php');
             ></img>
           </div>
           <div class="col-md-5 col-sm-5 personalDetails mx-auto">
+            
             <h3 class="personalHead">Personal Details:</h3>
             <ul>
               <li>Name:{userObj.userName}</li>

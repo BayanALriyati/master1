@@ -19,7 +19,7 @@
    <!-- custom css file link  -->
    <link rel="stylesheet" href="assets/css/style.css">
    <link rel="stylesheet" href="assets/css/navbar.css">
-   <!-- <link rel="stylesheet" href="assets/css/profile.css"> -->
+   <link rel="stylesheet" href="assets/css/profile.css">
 
 
      <!-- Alertify Js -->

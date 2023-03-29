@@ -72,11 +72,11 @@ if (isset($_GET['product'])){
       <input type="text" name="image" value="<?= $product['imageMain']; ?>">
                   <!-- <input type="number" name="qty" class="qty" min="1" max="99"  value="1"> -->
 
-         <div class="input-group mb-3 ">
+         <!-- <div class="input-group mb-3 ">
             <buton type="button" class="input-group-text addCart decrement-btn">-</buton>
             <input type="text" class="form-control input-qty" name="qty" value="1" disabled>
             <buton type="button" class="input-group-text addCart increment-btn">+</buton>
-         </div>
+         </div> -->
 
             <button type="submit" class="addCart" name="addTOcart"><i class="fas fa-shopping-cart"></i>Add To Cart</button>
             
